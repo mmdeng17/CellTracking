@@ -85,7 +85,7 @@ classdef MotionDetector < handle
             if isempty(Fin{1})||isempty(Init{1})
                 return
             end
-            
+
             assign = getMinAssign(Init,Fin,obj.Settings.Diffs,...
                 'MetCost',obj.Settings.MetCost,'Greedy',obj.Settings.Greedy,'Angle',obj.Settings.Angle);
             revassign = getMinAssign(Fin,Init,obj.Settings.Diffs,...
@@ -190,11 +190,11 @@ classdef MotionDetector < handle
             end
             
             % Remove small tracks
-%             for i=numel(obj.Tracks):-1:1
-%                 if sum(~isnan(obj.Tracks{i}))<=2
-%                     obj.Tracks(i) = [];
-%                 end
-%             end
+            for i=numel(obj.Tracks):-1:1
+                if sum(~isnan(obj.Tracks{i}))<=2
+                    obj.Tracks(i) = [];
+                end
+            end
 
             % Convert tracks to track data
             obj.TrackData = zeros(trackNum,obj.NFrames);

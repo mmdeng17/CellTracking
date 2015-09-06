@@ -31,9 +31,9 @@ function [assign,unassign,costs] = getMinAssign(initData,finData,dataDiffs,varar
 
 %% Parse Arguments
 p = inputParser;
-defaultMetCost    = 16;
-defaultGreedy     = true;
-defaultAngle = false;
+defaultMetCost = 16;
+defaultGreedy  = true;
+defaultAngle   = false;
 
 p.addParamValue('MetCost', defaultMetCost, @(x) isnumeric(x) && x>=0)
 p.addParamValue('Greedy',defaultGreedy,@(x) islogical(x)||x==1||x==0);
@@ -41,9 +41,9 @@ p.addParamValue('Angle',defaultAngle,@(x) islogical(x));
 
 p.parse(varargin{:});
 
-metCost    = p.Results.MetCost;
-greedy     = p.Results.Greedy;
-angle = p.Results.Angle;
+metCost = p.Results.MetCost;
+greedy  = p.Results.Greedy;
+angle   = p.Results.Angle;
 
 %% Input Validation
 

@@ -186,14 +186,11 @@ end
 writeAction(h,' Done.\n');
 
 writeAction(h,'Opening tracking GUI...');
-viewTracking(app);
 writeAction(h,' Done.\n');
 updateTime(h,1,toc);
-%     jhEdit = findjobj(handles.Prog.Handles(2));
-%     jEdit = jhEdit.getComponent(0).getComponent(0);
-%     jEdit.setCaretPosition(jEdit.getDocument.getLength);
 writeAction(h,'--- FINISHED ---')
-writeAction('\n')
+writeAction(h,'\n')
+viewTracking(app);
 end
 
 function RET(h,app)
@@ -206,10 +203,10 @@ app = tmpStruct.app;
 updateTime(h,1,toc)
 writeAction(h,'Done.\n')
 writeAction(h,'Opening tracking GUI...');
-viewTracking(app);
 writeAction(h,' Done.\n');
 writeAction(h,'--- FINISHED ---')
 writeAction(h,'\n')
+viewTracking(app);
 end
 
 function RMT(h,app)
@@ -286,11 +283,11 @@ for i=1:app.FileSettings.NFields
     writeAction(h,' Done.\n');
     
     writeAction(h,'Opening tracking GUI...');
-    viewTracking(app);
     writeAction(h,' Done.\n');
     updateTime(h,1,toc);
     writeAction(h,'--- FINISHED ---')
     writeAction('\n')
+    viewTracking(app);
 end
 end
 

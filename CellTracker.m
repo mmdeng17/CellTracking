@@ -10,6 +10,8 @@ classdef CellTracker < handle
         MotionDetect
         
         Data
+        TrackData
+        DataArray
     end
     
     properties (SetAccess = protected)
@@ -18,8 +20,6 @@ classdef CellTracker < handle
         Bounds
         CCs
         MotionData
-        TrackData
-        DataArray
     end
     
     methods
@@ -140,7 +140,7 @@ classdef CellTracker < handle
         function finalize(obj)
             nTracks = size(obj.TrackData,1);
             measInd = find(obj.FcnSettings.ObjMets(1,:)==1);
-            tmp = zeros(nTracks,obj.FileSettings.NFrames,size(obj.FcnSettings.ObjMets,2)+1);
+            tmp = zeros(nTracks,obj.FileSettings.NFrames,sum(obj.FcnSettings.ObjMets(1,:),2)+1);
             for k=1:length(measInd)
                 for i=1:obj.FileSettings.NFrames
                     for j=1:nTracks
@@ -153,12 +153,9 @@ classdef CellTracker < handle
             end
             
             tmp(:,:,end) = obj.TrackData;
-%             for i=1:nTracks
-%                 tmp(i,:,end) = obj.TrackData{i}';
-%             end
-            
             obj.DataArray = tmp;
         end
+        
         
         function updateData(obj,newData)
             obj.DataArray = newData;
@@ -166,6 +163,12 @@ classdef CellTracker < handle
         
         function addBound(obj,frame,Bound)
             obj.Bounds{frame}{end+1} = Bound;
+        end
+        
+        function addData(obj,frame,data)
+            for i=1:numel(obj.Data{frame})
+                obj.Data{frame}{i} = [obj.Data{frame}{i};data{i}];
+            end
         end
         
         % Function to return images

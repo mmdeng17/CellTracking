@@ -13,7 +13,7 @@ RIGHT_FILL = [.51 .02 .47 .96];
 metrics = {'Nuc Mean';'Nuc Median';'Nuc Std Dev';'Nuc Min';'Nuc Max';...
     'Track1 Mean';'Track1 Median';'Track1 Std Dev';'Track1 Min';'Track1 Max';
     'Track2 Mean';'Track2 Median';'Track2 Std Dev';'Track2 Min';'Track2 Max';
-    'Area';'Perimeter';'X Position';'Y Position';'Circularity';'Local Density';'Orientation';'Tracks'};
+    'Area';'Perimeter';'Circularity';'X Position';'Y Position';'Local Density';'Orientation';'Tracks'};
 pauseim = [zeros(12,2) 256*.85*ones(12,6) zeros(12,2)];
 pauseim = uint8(cat(3,pauseim,pauseim,pauseim));
 [tmp1,tmp2] = meshgrid(0:10,0:12);
@@ -67,7 +67,8 @@ hView(4) = uicontrol('Parent',hView(1),'Style','slider','Min',0,...
     'Max',1,'Value',0,'Callback',{@updateFields},...
     'SliderStep',[.1 .2]);
 hView(5) = uitable('Parent',hView(1),'Visible','off','Data',[],...
-    'ColumnWidth',{45},'CellSelectionCallback',{@updateFields});
+    'ColumnWidth',{45},'CellSelectionCallback',{@updateFields},...
+    'CellEditCallback',{@changeFields});
 viewPos = [0 0 .59 1;.02 .49 .96 .50;.1 .05 .85 .385;.07 .46 .92 .02;.1 .05 .85 .385];
 for i=1:numel(hView)
     hView(i).Units = 'normalized';
@@ -348,34 +349,22 @@ end
 end
 
 function mouseMoveFcn(h,e)
+hView = h.Handles.View;
 if ~isempty(h.UserData.Props.CurrResize)
     currPoint = get(h,'CurrentPoint');
-    h.UserData.Props.ResizePos;
     imSize = size(h.UserData.App.Images{1});
     switch h.UserData.Props.CurrResize
         case 'X'
-            %             yLim = h.UserData.Props.ResizePos(2)-2*imSize(2)/imSize(1)*(h.UserData.Props.ResizePos(1)-0.0118);
-            %             yLim
-            %             xDiff = h.UserData.Props.ResizePos(1)-max(currPoint(1),.0118);
-            %             currY = h.UserData.Props.ResizePos(2)-2*imSize(2)/imSize(1)*xDiff;
-            %             [h.UserData.Props.ResizePos(1) currPoint(1) currY]
-            %             if currY>max(yLim,.15)
-            %                 currPos = get(h.Handles.View(2),'Position');
-            %                 set(h.Handles.View(2),'Position',[currPos(1) currPoint(2) currPos(3) .99-currPoint(2)])
-            %                 currPos = get(h.Handles.View(4),'Position');
-            %                 set(h.Handles.View(4),'Position',[currPos(1) currPoint(2)-.03 currPos(3) .02])
-            %                 currPos = get(h.Handles.View(3),'Position');
-            %                 set(h.Handles.View(3),'Position',[currPos(1) .05 currPos(3) currPoint(2)-.105])
-            %             end
         case 'Y'
             yLim = h.UserData.Props.ResizePos(2)-2*imSize(2)/imSize(1)*(h.UserData.Props.ResizePos(1)-0.0118);
             if currPoint(2)>max(yLim,.15)&& currPoint(2)<.75
-                currPos = get(h.Handles.View(2),'Position');
-                set(h.Handles.View(2),'Position',[currPos(1) currPoint(2) currPos(3) .99-currPoint(2)])
-                currPos = get(h.Handles.View(4),'Position');
-                set(h.Handles.View(4),'Position',[currPos(1) currPoint(2)-.03 currPos(3) .02])
-                currPos = get(h.Handles.View(3),'Position');
-                set(h.Handles.View(3),'Position',[currPos(1) .05 currPos(3) currPoint(2)-.105])
+                currPos = get(hView(2),'Position');
+                set(hView(2),'Position',[currPos(1) currPoint(2) currPos(3) .99-currPoint(2)])
+                currPos = get(hView(4),'Position');
+                set(hView(4),'Position',[currPos(1) currPoint(2)-.03 currPos(3) .02])
+                currPos = get(hView(3),'Position');
+                set(hView(3),'Position',[currPos(1) .05 currPos(3) currPoint(2)-.105])
+                set(hView(5),'Position',[currPos(1) .05 currPos(3) currPoint(2)-.105])
             end
         case 'XY'
     end
@@ -498,25 +487,25 @@ DispSetts.Change = find(sum(hImDisp([3 8 13;5 10 15;6 11 16])==h)~=0,1);
 
 switch h
     case {hImDisp(3),hImDisp(8),hImDisp(13)}
-        DispSetts.(['Ch' num2str(find(hImDisp([3 8 13])==h,1))]) = h.Value;
+        DispSetts.(['Ch' num2str(find(hImDisp([3 8 13])==h,1))]) = get(h,'Value');
     case {hImDisp(5),hImDisp(10),hImDisp(15)}
-        if h.Value>253
-            h.Value = 253;
+        if get(h,'Value')>253
+            set(h,'Value',253);
         end
         hCurrMax = hImDisp(5*find(hImDisp([5 10 15])==h)+1);
-        if hCurrMax.Value<(h.Value+2);
-            hCurrMax.Value = h.Value+2;
+        if get(hCurrMax,'Value')<(h.Value+2);
+            set(hCurrMax,'Value',h.Value+2);
         end
-        DispSetts.(['Ch' num2str(find(hImDisp([5 10 15])==h,1)) 'Min']) = h.Value;
+        DispSetts.(['Ch' num2str(find(hImDisp([5 10 15])==h,1)) 'Min']) = get(h,'Value');
     case {hImDisp(6),hImDisp(11),hImDisp(16)}
-        if h.Value<3
-            h.Value = 3;
+        if get(h,'Value')<3
+            set(h,'Value',3);
         end
         hCurrMin = hImDisp(5*find(hImDisp([6 11 16])==h));
-        if hCurrMin.Value>(h.Value-2);
-            hCurrMin.Value = h.Value-2;
+        if get(hCurrMin,'Value')>(h.Value-2);
+            set(hCurrMin,'Value',h.Value-2);
         end
-        DispSetts.(['Ch' num2str(find(hImDisp([6 11 16])==h,1)) 'Max']) = h.Value;
+        DispSetts.(['Ch' num2str(find(hImDisp([6 11 16])==h,1)) 'Max']) = get(h,'Value');
 end
 
 f.UserData.DispSetts = DispSetts;
@@ -533,13 +522,13 @@ ImContrSetts = f.UserData.ImContrSetts;
 
 switch h
     case hImContr(3)
-        ImContrSetts.DispTraj = h.Value;
+        ImContrSetts.DispTraj = get(h,'Value');
     case hImContr(5)
-        ImContrSetts.DispOther = h.Value;
+        ImContrSetts.DispOther = get(h,'Value');
     case hImContr(7)
-        ImContrSetts.DispTrail = h.Value;
+        ImContrSetts.DispTrail = get(h,'Value');
     case hImContr(8)
-        ImContrSetts.TrailLength = str2double(h.String);
+        ImContrSetts.TrailLength = str2double(get(h,'String'));
     case hImContr(10)
         set(hView(4),'Value',1)
         f.UserData.Props.CurrFrame = 1;
@@ -566,6 +555,7 @@ end
 
 function updateDataContrFields(h,e,f)
 % Function to update data control fields.
+app = f.UserData.App;
 handles = f.Handles;
 hView = handles.View;
 hDataContr = handles.DataContr;
@@ -589,7 +579,7 @@ switch h
         DataContrSetts.Action = 'X';
         DataContrSetts.Enable = 1;
     case hDataContr(7)
-        tmpData = f.UserData.App.DataArray;
+        tmpData = app.DataArray;
         nMets = size(tmpData,3);
         for i=1:nMets
             tmpData(DataContrSetts.NextTrack,DataContrSetts.CurrFrames,i) = ...
@@ -600,11 +590,11 @@ switch h
                 tmpData(DataContrSetts.CurrTrack,DataContrSetts.CurrFrames,i) = 0;
             end
         end
-        f.UserData.App.updateData(tmpData);
+        app.updateData(tmpData);
         DataContrSetts = struct('CurrTrack',[],'NextTrack',[],'CurrFrames',[],'Action',[],...
             'Enable',0,'Last',[]);
     case hDataContr(8)
-        tmpData = f.UserData.App.DataArray;
+        tmpData = app.DataArray;
         nMets = size(tmpData,3);
         for i=1:nMets
             tmp = tmpData(DataContrSetts.CurrTrack,DataContrSetts.CurrFrames,i);
@@ -612,29 +602,31 @@ switch h
                 tmpData(DataContrSetts.NextTrack,DataContrSetts.CurrFrames,i);
             tmpData(DataContrSetts.NextTrack,DataContrSetts.CurrFrames,i) = tmp;
         end
-        f.UserData.App.updateData(tmpData);
+        app.updateData(tmpData);
         DataContrSetts = struct('CurrTrack',[],'NextTrack',[],'CurrFrames',[],'Action',[],...
             'Enable',0,'Last',[]);
     case hDataContr(9)
-        tmpData = f.UserData.App.DataArray;
+        tmpData = app.DataArray;
         nMets = size(tmpData,3);
         for i=1:nMets
             tmpData(DataContrSetts.CurrTrack,DataContrSetts.CurrFrames,i) = 0;
         end
-        f.UserData.App.updateData(tmpData);
+        app.updateData(tmpData);
         DataContrSetts = struct('CurrTrack',[],'NextTrack',[],'CurrFrames',[],'Action',[],...
             'Enable',0,'Last',[]);
     case hDataContr(11)
         currFrame = f.UserData.Props.CurrFrame;
-        Image = f.UserData.App.Images{currFrame};
+        Image = app.Images{currFrame};
         DispSetts = f.UserData.DispSetts;
         dispIm = getDispIm(Image,DispSetts);
         fTmp = figure('Name','Draw new boundary');
-        imshow(uint8(dispIm))
+        imshow(uint8(dispIm));
         
         [tmpMask,x,y] = roipoly;
         if isempty(x)||isempty(y)
-            close(fTmp)
+            try
+                close(fTmp)
+            end
             return
         end
         
@@ -647,17 +639,18 @@ switch h
         close(fTmp)
         switch keep
             case 'Yes'
-                singleCC = struct('Connectivity',8,'ImageSize',size(f.UserData.App.Images{1}(:,:,1)),...
+                singleCC = struct('Connectivity',8,'ImageSize',size(app.Images{1}(:,:,1)),...
                     'NumObjects',1,'PixelIdxList',[]);
                 singleCC.PixelIdxList{end+1} = find(tmpMask==1);
-                singleData = quickMeasBound(f,singleCC,f.UserData.App.Images{currFrame});
-                for i=1:numel(f.UserData.App.Data{currFrame})
-                    f.UserData.App.Data{currFrame}{i} = [f.UserData.App.Data{currFrame}{i};singleData{i}];
-                end
+                singleData = quickMeasBound(f,singleCC,app.Images{currFrame});
+                app.addData(currFrame,singleData);
+                app.addBound(currFrame,tmpBound);
+%                 for i=1:numel(app.Data{currFrame})
+%                     app.Data{currFrame}{i} = [app.Data{currFrame}{i};singleData{i}];
+%                 end
                 
-                f.UserData.App.addBound(currFrame,tmpBound);
                 if (isempty(f.UserData.Props.NewBounds{currFrame}))
-                    newCC = struct('Connectivity',8,'ImageSize',size(f.UserData.App.Images{1}(:,:,1)),...
+                    newCC = struct('Connectivity',8,'ImageSize',size(app.Images{1}(:,:,1)),...
                         'NumObjects',1,'PixelIdxList',[]);
                     newCC.PixelIdxList{end+1} = find(tmpMask==1);
                     f.UserData.Props.NewBounds{currFrame} = newCC;
@@ -670,10 +663,12 @@ switch h
             case 'Cancel'
         end
         updateImage(f);
+        updateOutlines(f);
     case hDataContr(12)
         
 end
 
+f.UserData.App = app;
 f.UserData.DataContrSetts = DataContrSetts;
 
 updateGraph(f);
@@ -685,33 +680,34 @@ function updateOutputContrFields(h,e,f)
 
 global metrics;
 
+app = f.UserData.App;
 handles = f.Handles;
-hView = handles.View;
 hSelect = handles.Select;
 hOutputContr = handles.OutputContr;
 
 switch h
     case hOutputContr(3)
-        if isempty(f.UserData.App.SaveSettings.FileName)
-            currPath = f.UserData.App.SaveSettings.FilePath;
+        measBounds(f);
+        
+        if isempty(app.SaveSettings.FileName)
+            currPath = app.SaveSettings.FilePath;
         else
-            currPath = fullfile(f.UserData.App.SaveSettings.FilePath,f.UserData.App.SaveSettings.FileName);
+            currPath = fullfile(app.SaveSettings.FilePath,app.SaveSettings.FileName);
         end
         [names,path] = uiputfile({'*.mat','MAT Files';'*.*','All Files'},...
             'Choose tracking file to save:',currPath);
         if ~isequal(names,0)
-            f.UserData.App.SaveSettings.FileName = names;
-            f.UserData.App.SaveSettings.FilePath = path;
-            app = f.UserData.App;
+            app.SaveSettings.FileName = names;
+            app.SaveSettings.FilePath = path;
             save(fullfile(path,names),'app');
+            f.UserData.App = app;
         else
         end
     case hOutputContr(4)
-        f.UserData.App.SaveSettings
-        if isempty(f.UserData.App.SaveSettings.FileName)
-            currPath = f.UserData.App.SaveSettings.FilePath;
+        if isempty(app.SaveSettings.FileName)
+            currPath = app.SaveSettings.FilePath;
         else
-            currPath = fullfile(f.UserData.App.SaveSettings.FilePath,f.UserData.App.SaveSettings.FileName);
+            currPath = fullfile(app.SaveSettings.FilePath,app.SaveSettings.FileName);
         end
         [names,path] = uigetfile({'*.mat','MAT Files';'*.*','All Files'},...
             'Choose tracking file to save:',currPath,'MultiSelect','off');
@@ -727,7 +723,9 @@ switch h
         else
         end
     case hOutputContr(6)
-        outData = f.UserData.App.DataArray;
+        measBounds(f);
+        
+        outData = app.DataArray;
         selTracks = get(hSelect(2),'Data');
         selTracks = cell2mat(selTracks(:,2));
         if sum(selTracks)==0
@@ -750,6 +748,46 @@ switch h
 end
 end
 
+function changeFields(h,e)
+% Function to update selected field in GUI.
+f = getFig(h);
+handles = f.Handles;
+hView = handles.View;
+hSelect = handles.Select;
+hImDisp = handles.ImDisp;
+hImContr = handles.ImContr;
+hDataContr = handles.DataContr;
+hOutputContr = handles.OutputContr;
+
+if ~isempty(find(hView==h,1))
+    changeViewFields(h,e,f)
+elseif ~isempty(find(hSelect==h,1))
+    changeSelectFields(h,e,f)
+elseif ~isempty(find(hImDisp==h,1))
+    changeImDispFields(h,e,f)
+elseif ~isempty(find(hImContr==h,1))
+    changeImContrFields(h,e,f)
+elseif ~isempty(find(hDataContr==h,1))
+    changeDataContrFields(h,e,f)
+elseif ~isempty(find(hOutputContr==h,1))
+    changeOutputContrFields(h,e,f)
+end
+
+end
+
+function changeViewFields(h,e,f)
+app = f.UserData.App;
+if e.NewData~=0
+    mets = find(app.FcnSettings.ObjMets(1,:)==1);
+    tmp1Data = app.DataArray;
+    for i=1:size(tmp1Data,3)-1
+        tmp1Data(e.Indices(1),e.Indices(2),i) = app.Data{e.Indices(2)}{mets(i)}(e.NewData);
+    end
+    tmp1Data(e.Indices(1),e.Indices(2),end) = e.NewData;
+    app.updateData(tmp1Data);
+    f.UserData.App = app;
+end
+end
 
 %% GUI Display callbacks
 function updateImage(f)
@@ -782,7 +820,7 @@ end
 
 f.UserData.ImCache = ImCache;
 
-f.CurrentAxes = hView(2);
+set(f,'CurrentAxes',hView(2));
 imshow(uint8(dispIm));
 
 end
@@ -813,23 +851,23 @@ othTracks = setdiff(1:nTracks,showTracks);
 for i=1:numel(showTracks)
     ind = arrayTracks(showTracks(i),currFrame);
     if ind~=0
-        f.CurrentAxes = hView(2);
+        set(f,'CurrentAxes',hView(2));
         hold (hView(2),'on')
         hOuts(end+1) = plot(Bounds{ind}(:,2),Bounds{ind}(:,1),'Color',COLORS{rem(i,6)+1});
-        hOuts(end+1) = text(mean(Bounds{ind}(:,2)),mean(Bounds{ind}(:,1)),num2str(ind),...
+        hOuts(end+1) = text(mean(Bounds{ind}(:,2)),mean(Bounds{ind}(:,1)),num2str(showTracks(i)),...
             'Color',COLORS{rem(i,6)+1},'HorizontalAlignment','center');
     end
 end
 for i=1:numel(othTracks)
     ind = arrayTracks(othTracks(i),currFrame);
     if ind~=0 && ImContrSetts.DispTraj
-        f.CurrentAxes = hView(2);
+        set(f,'CurrentAxes',hView(2));
         hold (hView(2),'on')
         hOuts(end+1) = plot(Bounds{ind}(:,2),Bounds{ind}(:,1),'Color',[.8,.5,.2]);
-        hOuts(end+1) = text(mean(Bounds{ind}(:,2)),mean(Bounds{ind}(:,1)),num2str(ind),...
+        hOuts(end+1) = text(mean(Bounds{ind}(:,2)),mean(Bounds{ind}(:,1)),num2str(othTracks(i)),...
             'Color',[.8,.5,.2],'HorizontalAlignment','center');
     elseif ind~=0 && ImContrSetts.DispOther
-        f.CurrentAxes = hView(2);
+        set(f,'CurrentAxes',hView(2));
         hold (hView(2),'on')
         hOuts(end+1) = plot(Bounds{ind}(:,2),Bounds{ind}(:,1),'Color',[1,.1,.3]);
         hOuts(end+1) = text(mean(Bounds{ind}(:,2)),mean(Bounds{ind}(:,1)),num2str(ind),...
@@ -837,14 +875,13 @@ for i=1:numel(othTracks)
     end
 end
 
-
 othBounds = arrayTracks(:,currFrame);
 othBounds = othBounds(othBounds~=0);
 othBounds = setdiff(1:numel(Bounds),othBounds);
 for i=1:numel(othBounds)
     ind = othBounds(i);
     if ImContrSetts.DispOther
-        f.CurrentAxes = hView(2);
+        set(f,'CurrentAxes',hView(2));
         hold (hView(2),'on')
         hOuts(end+1) = plot(Bounds{ind}(:,2),Bounds{ind}(:,1),'Color',[1,.1,.3]);
         hOuts(end+1) = text(mean(Bounds{ind}(:,2)),mean(Bounds{ind}(:,1)),num2str(ind),...
@@ -853,13 +890,6 @@ for i=1:numel(othBounds)
 end
 
 f.UserData.Props.CurrOuts = hOuts;
-
-% for i=1:numel(Bounds)
-%     if app.DataArray(i,currFrame)~=0 && ImContrSetts.DispTraj
-%     elseif app.DataArray(i,currFrame)~=0 && ImContrSetts.DispOther
-%     elseif app.DataArray(i,currFrame)==0 && ImContrSetts.DispOther
-%     end
-% end
 
 end
 
@@ -918,23 +948,24 @@ end
 function updateTable(f)
 app = f.UserData.App;
 hView = f.Handles.View;
-currTracks = f.UserData.Props.CurrTracks;
-currFrame = f.UserData.Props.CurrFrame;
 currMets = f.UserData.Props.CurrMets;
-nFrames = app.FileSettings.NFrames;
 
 if strcmp(get(hView(5),'Visible'),'off')
     return
 end
 
 set(hView(5),'Data',app.DataArray(:,:,currMets))
+if currMets==sum(app.FcnSettings.ObjMets(1,:))+1
+    set(hView(5),'ColumnEditable',true);
+else
+    set(hView(5),'ColumnEditable',false);
+end
 end
 
 function updateHistogram(f)
 
 currFrame = f.UserData.Props.CurrFrame;
 handles = f.Handles;
-hControl = handles.Control;
 hImDisp = handles.ImDisp;
 DispSetts = f.UserData.DispSetts;
 
@@ -958,14 +989,10 @@ area(hImDisp(4),histData(2,:),histData(1,:),'FaceColor','r');
 area(hImDisp(9),histData(4,:),histData(3,:),'FaceColor','g');
 area(hImDisp(14),histData(6,:),histData(5,:),'FaceColor','b');
 
-hImDisp(4).YTick = []; hImDisp(9).YTick = []; hImDisp(14).YTick = [];
-hImDisp(4).XLim = [0 255]; hImDisp(9).XLim = [0 255]; hImDisp(14).XLim = [0 255];
+set(hImDisp(4),'YTick',[]); set(hImDisp(9),'YTick',[]); set(hImDisp(14),'YTick',[]);
+set(hImDisp(4),'XLim',[0 255]); set(hImDisp(9),'XLim',[0 255]); set(hImDisp(14),'XLim',[0 255]);
 
 f.UserData.DispSetts = DispSetts;
-
-% if hControl(1).SelectedTab==hControl(2)
-%     drawnow;
-% end
 
 end
 
@@ -1054,44 +1081,46 @@ data{14} = 255*(min(tmp(singleCC.PixelIdxList{1}))-backB);
 data{15} = 255*(max(tmp(singleCC.PixelIdxList{1}))-backB);
 data{16} = CCStats.Area;
 data{17} = CCStats.Perimeter;
-data{18} = CCStats.Centroid(1);
-data{19} = CCStats.Centroid(2);
-data{20} = 4*pi*CCStats.Area/CCStats.Perimeter/CCStats.Perimeter;
+data{18} = 4*pi*CCStats.Area/CCStats.Perimeter/CCStats.Perimeter;
+data{19} = CCStats.Centroid(1);
+data{20} = CCStats.Centroid(2);
 data{21} = 0;
 data{22} = CCStats.Orientation;
 end
 
 % Real measurement of user-defined boundaries
 function measBounds(f)
-nFrames = f.UserData.App.FileSettings.NFrames;
+app = f.UserData.App;
+nFrames = app.FileSettings.NFrames;
 for i=1:nFrames
     if isempty(f.UserData.Props.NewBounds{i})
         continue
     else
         newData = getCellData(f.UserData.Props.NewBounds{i},...
-            round(255*f.UserData.App.Images{i}),...
-            'BkgdCorr',f.UserData.App.FcnSettings.BkgdCorr); % get measurements
+            round(255*app.Images{i}),...
+            'BkgdCorr',app.FcnSettings.BkgdCorr); % get measurements
         % update all cell data
-        for k=1:nMeas
-            f.UserData.App.Data{i}{k}(end-f.UserData.Props.NewBounds{i}.NumObjects+1:end) = newData{k};
+        for k=1:numel(app.Data{1})
+            app.Data{i}{k}(end-f.UserData.Props.NewBounds{i}.NumObjects+1:end) = newData{k};
         end
         
         % update track data
-        tmp = numel(f.UserData.App.Data{i}{1})-f.UserData.Props.NewBounds{i}.NumObjects+1;
-        mets = find(imMeas==1);
-        arraydata = f.UserData.App.DataArray;
+        tmp = numel(app.Data{i}{1})-f.UserData.Props.NewBounds{i}.NumObjects+1;
+        mets = find(app.FcnSettings.ObjMets(1,:)==1);
+        arraydata = app.DataArray;
         replaceBounds = find((arraydata(:,i,end)-tmp)>=0);
         if ~isempty(replaceBounds)
             for j=1:numel(replaceBounds)
-                for k=1:nMets-1
+                for k=1:sum(app.FcnSettings.ObjMets(1,:))
                     arraydata(replaceBounds(j),i,k) = newData{mets(k)}(arraydata(replaceBounds(j),i,end)-tmp+1);
                 end
             end
         end
-        f.UserData.App.updateData(arraydata);
+        app.updateData(arraydata);
     end
 end
 
+f.UserData.App = app;
 f.UserData.Props.NewBounds = cell(nFrames,1); % clear new boundaries
 end
 
@@ -1120,5 +1149,5 @@ if isprop(h,'Name')
         return
     end
 end
-root = getFig(h.Parent);
+root = getFig(get(h,'Parent'));
 end
