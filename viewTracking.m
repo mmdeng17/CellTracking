@@ -82,10 +82,24 @@ hSelect(2) = uitable('Parent',hSelect(1),'RowName',[],'ColumnName',{'Track'},...
     'CellSelectionCallback',{@updateFields});
 hSelect(3) = uitable('Parent',hSelect(1),'RowName',[],'ColumnName',[],...
     'ColumnFormat',{'char'},'ColumnWidth',{85},'CellSelectionCallback',{@updateFields});
-selectPos = [.59 0 .14 1;.02 .5 .96 .49;.02 .05 .96 .375];
+hSelect(4) = uibuttongroup('Parent',hSelect(1),'Title','Navigation');
+hSelect(5) = uicontrol('Parent',hSelect(4),'Style','pushbutton','CData',bendim);
+hSelect(6) = uicontrol('Parent',hSelect(4),'Style','pushbutton','CData',bkdim);
+hSelect(7) = uicontrol('Parent',hSelect(4),'Style','pushbutton','CData',pauseim);
+hSelect(8) = uicontrol('Parent',hSelect(4),'Style','pushbutton','CData',playim);
+hSelect(9) = uicontrol('Parent',hSelect(4),'Style','pushbutton','CData',fwdim);
+hSelect(10) = uicontrol('Parent',hSelect(4),'Style','pushbutton','CData',fendim);
+hSelect(11) = uicontrol('Parent',hSelect(1),'Style','text','String','Frame: 1',...
+    'HorizontalAlignment','left');
+selectPos = [.59 0 .14 1;0 .56 1 .44;0 0 1 .44;0 .45 1 .06;.02 .02 .16 .96;...
+    .18 .02 .16 .96;.34 .02 .16 .96;.5 .02 .16 .96;.66 .02 .16 .96;...
+    .82 .02 .16 .96;0 .51 1 .04];
 for i=1:numel(hSelect)
     hSelect(i).Units = 'normalized';
     hSelect(i).Position = selectPos(i,:);
+    if ~isempty(find(hSelect([5:10])==hSelect(i),1))
+        hSelect(i).Callback = {@updateFields};
+    end
 end
 
 % Control Controls
@@ -141,21 +155,21 @@ hImContr(7) = uicontrol('Parent',hImContr(6),'Style','checkbox',...
     'Value',ImContrSetts.DispTrail);
 hImContr(8) = uicontrol('Parent',hImContr(6),'Style','edit',...
     'String',num2str(ImContrSetts.TrailLength),'HorizontalAlignment','right');
-hImContr(9) = uibuttongroup('Parent',hImContr(1),'Title','Navigation');
-hImContr(10) = uicontrol('Parent',hImContr(9),'Style','pushbutton','CData',bendim);
-hImContr(11) = uicontrol('Parent',hImContr(9),'Style','pushbutton','CData',bkdim);
-hImContr(12) = uicontrol('Parent',hImContr(9),'Style','pushbutton','CData',pauseim);
-hImContr(13) = uicontrol('Parent',hImContr(9),'Style','pushbutton','CData',playim);
-hImContr(14) = uicontrol('Parent',hImContr(9),'Style','pushbutton','CData',fwdim);
-hImContr(15) = uicontrol('Parent',hImContr(9),'Style','pushbutton','CData',fendim);
+% hImContr(9) = uibuttongroup('Parent',hImContr(1),'Title','Navigation');
+% hImContr(10) = uicontrol('Parent',hImContr(9),'Style','pushbutton','CData',bendim);
+% hImContr(11) = uicontrol('Parent',hImContr(9),'Style','pushbutton','CData',bkdim);
+% hImContr(12) = uicontrol('Parent',hImContr(9),'Style','pushbutton','CData',pauseim);
+% hImContr(13) = uicontrol('Parent',hImContr(9),'Style','pushbutton','CData',playim);
+% hImContr(14) = uicontrol('Parent',hImContr(9),'Style','pushbutton','CData',fwdim);
+% hImContr(15) = uicontrol('Parent',hImContr(9),'Style','pushbutton','CData',fendim);
 imContrPos = [0 0 1 1;.02 .91 .96 .08;FULL_FILL;.02 .82 .96 .08;FULL_FILL;...
-    .02 .73 .96 .08;0 0 .15 1;.20 .05 .75 .93;.02 .62 .96 .06;.02 .02 .16 .96;...
-    .18 .02 .16 .96;.34 .02 .16 .96;.5 .02 .16 .96;.66 .02 .16 .96;.82 .02 .16 .96];
+    .02 .73 .96 .08;0 0 .15 1;.20 .05 .75 .93];%;.02 .62 .96 .06;.02 .02 .16 .96;...
+    %.18 .02 .16 .96;.34 .02 .16 .96;.5 .02 .16 .96;.66 .02 .16 .96;.82 .02 .16 .96];
 for i=1:numel(hImContr)
     hImContr(i).Units = 'normalized';
     hImContr(i).Position = imContrPos(i,:);
     
-    if ~isempty(find(hImContr([3 5 7 8 10:15])==hImContr(i),1))
+    if ~isempty(find(hImContr([3 5 7 8])==hImContr(i),1))
         hImContr(i).Callback = {@updateFields};
     end
 end
@@ -407,6 +421,7 @@ end
 function updateViewFields(h,e,f)
 handles = f.Handles;
 hView = handles.View;
+hSelect = handles.Select;
 DataContrSetts = f.UserData.DataContrSetts;
 
 switch h
@@ -415,6 +430,7 @@ switch h
             return
         end
         f.UserData.Props.CurrFrame = round(h.Value);
+        set(hSelect(11),'String',sprintf('Frame: %i',f.UserData.Props.CurrFrame));
     case hView(5)
         if isempty(e.Indices)
             return
@@ -456,6 +472,8 @@ global time last;
 
 handles = f.Handles;
 hSelect = handles.Select;
+hView = handles.View;
+
 switch h
     case hSelect(2)
         t = now();
@@ -472,6 +490,24 @@ switch h
         updateOutlines(f);
     case hSelect(3)
         f.UserData.Props.CurrMets = e.Indices(1,1);
+    case hSelect(5)
+        set(hView(4),'Value',1)
+        f.UserData.Props.CurrFrame = 1;
+        set(hSelect(11),'String',sprintf('Frame: %i',f.UserData.Props.CurrFrame));
+        updateImage(f);
+        updateOutlines(f);
+        updateHistogram(f);
+    case hSelect(6)
+    case hSelect(7)
+    case hSelect(8)
+    case hSelect(9)
+    case hSelect(10)
+        set(hView(4),'Value',f.UserData.App.FileSettings.NFrames);
+        f.UserData.Props.CurrFrame = f.UserData.App.FileSettings.NFrames;
+        set(hSelect(11),'String',sprintf('Frame: %i',f.UserData.Props.CurrFrame));
+        updateImage(f);
+        updateOutlines(f);
+        updateHistogram(f);
 end
 
 updateGraph(f);
