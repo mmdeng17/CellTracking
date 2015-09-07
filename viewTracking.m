@@ -477,7 +477,8 @@ hView = handles.View;
 switch h
     case hSelect(2)
         t = now();
-        f.UserData.Props.CurrTracks = e.Indices(1:min(6,size(e.Indices,1)),1);
+		tmp = unique(e.Indices(e.Indices(:,2)==1,1));
+        f.UserData.Props.CurrTracks = tmp(1:min(6,numel(tmp)));
         if (t-time)*(3600*24)<=.5 && f.UserData.Props.CurrTracks(1)==last
             selTracks = get(hSelect(2),'Data');
             selTracks = selTracks(:,2);
@@ -737,6 +738,7 @@ switch h
             app.SaveSettings.FilePath = path;
             save(fullfile(path,names),'app');
             f.UserData.App = app;
+            msgbox(['Output data successfully written to ' names]);
         else
         end
     case hOutputContr(4)

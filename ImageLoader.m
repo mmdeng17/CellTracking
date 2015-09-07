@@ -67,7 +67,7 @@ classdef ImageLoader < handle
                                 obj.OutNames{i} = obj.InNames{i};
                             case 'Split'
                                 tmp = {Tiff(obj.InNames{1}{i}),Tiff(obj.InNames{2}{i}),Tiff(obj.InNames{3}{i})};
-                                obj.Images{i} = cat(3,tmp{1}.read(),tmp{2}.read(),tmp{2}.read());
+                                obj.Images{i} = cat(3,tmp{1}.read(),tmp{2}.read(),tmp{3}.read());
                                 obj.OutNames{1}{i} = obj.InNames{1}{i};
                                 obj.OutNames{2}{i} = obj.InNames{2}{i};
                                 obj.OutNames{3}{i} = obj.InNames{3}{i};
@@ -121,7 +121,7 @@ classdef ImageLoader < handle
                             obj.OutNames{i} = obj.InNames{i};
                         case 'Split'
                             tmp = {Tiff(obj.InNames{1}{i}),Tiff(obj.InNames{2}{i}),Tiff(obj.InNames{3}{i})};
-                            obj.Images{i} = cat(3,tmp{1}.read(),tmp{2}.read(),tmp{2}.read());
+                            obj.Images{i} = cat(3,tmp{1}.read(),tmp{2}.read(),tmp{3}.read());
                             obj.OutNames{1}{i} = obj.InNames{1}{i};
                             obj.OutNames{2}{i} = obj.InNames{2}{i};
                             obj.OutNames{3}{i} = obj.InNames{3}{i};
@@ -144,7 +144,7 @@ classdef ImageLoader < handle
             end
             
             if strcmp(obj.ImType,'Gray')
-                obj.Images{i} = cat(3,obj.Images{i},obj.Images{i},pbj.Images{i});
+                obj.Images{i} = cat(3,obj.Images{i},obj.Images{i},obj.Images{i});
             end
             
             if obj.Resize~=1
