@@ -167,6 +167,7 @@ for i=1:nFrames-1
     app.linkNext();
     updateTime(h,(i+1)/(2*nFrames),toc);
 end
+app.restartMotion();
 updateTime(h,0.5,toc)
 for i=1:nFrames-1
     app.linkNextGap();
@@ -264,6 +265,7 @@ for i=1:app.FileSettings.NFields
         app.linkNext();
         updateTime(h,(j+1)/(2*nFrames),toc);
     end
+	app.restartMotion();
     updateTime(h,0.5,toc)
     for j=1:nFrames-1
         app.linkNextGap();

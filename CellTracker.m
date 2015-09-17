@@ -72,9 +72,12 @@ classdef CellTracker < handle
         
         % Function to load images one by one
         function loadNextImage(obj)
-            obj.ImLoader.Path
             obj.ImLoader.loadNext();
         end
+		
+		function finLoad(obj);
+			obj.ImLoader.finalize();
+		end
         
         % Function to segment objects in image
         function segment(obj,i)
@@ -124,6 +127,10 @@ classdef CellTracker < handle
             % Function to conduct initial motion tracking
             obj.MotionDetect.linkNext();
         end
+
+		function resetMotion(obj)
+			% Function to reset motion for 2nd phase (ie gap linking)
+		end
         
         function linkNextGap(obj)
             % Function to conduct secondary gap tracking
