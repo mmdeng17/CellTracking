@@ -46,7 +46,7 @@ hIms(10) = uicontrol('Parent',hIms(8),'Style','pushbutton','String','Choose Ch2 
 hIms(11) = uicontrol('Parent',hIms(8),'Style','pushbutton','String','Choose Ch3 Images...',...
     'Visible','off','Callback',{@chooseFile});
 hIms(12) = uicontrol('Parent',hIms(8),'Style','pushbutton','String','Clear Images...',...
-    'Callback',{@UICallback});
+    'Callback',{@chooseFile});
 
 
 imsPos = [.02 .85 .35 .13;FULL_FILL;.02 .34 .52 .46;.02 .18 .3 .13;FULL_FILL;...
@@ -370,6 +370,14 @@ end
                 else
                     h = errordlg('No images were entered.');
                 end
+			case hIms(12)
+				Setts.File.Path = pwd;
+				if hIms(2).Value==2
+					Setts.File.FileNames = cell(3,1);
+				else
+					Setts.File.FileNames = [];
+				end
+                hIms(3).String = [];
             case hDOs(5)
                 [names,path] = uiputfile({'*.mat','MAT Files';'*.*','All Files'},...
                     'Choose MAT file to save...',Setts.File.Path);
