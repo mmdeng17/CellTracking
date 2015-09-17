@@ -141,6 +141,7 @@ for i=1:nFrames
     app.loadNextImage();
     updateTime(h,i/nFrames,toc);
 end
+app.finLoad();
 writeAction(h,' Done.\n');
 
 writeAction(h,'Detecting cell objects...');
@@ -237,6 +238,7 @@ for i=1:app.FileSettings.NFields
         app.loadNextImage();
         updateTime(h,j/nFrames,toc);
     end
+	app.finLoad();
     writeAction(h,' Done.\n');
     
     writeAction(h,'Detecting cell objects...');

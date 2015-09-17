@@ -16,6 +16,7 @@ classdef ImageLoader < handle
         
         Images
         OutNames
+		PrevWarn
     end
     
     methods
@@ -33,6 +34,15 @@ classdef ImageLoader < handle
         
         % Function to prep loader for loading
         function initialize(obj)
+			% Disable TIFF library warnings
+			tmpStruct = warning('query','last');
+			if strcmp(tmpStruct.state,'on')
+				PrevWarn = true;
+			else
+				PrevWarn = false;
+			end
+			warning('off');
+
             switch obj.Method
                 case 'File'
                     switch obj.ImType
@@ -157,6 +167,15 @@ classdef ImageLoader < handle
                 rmpath(obj.Path);
             end
         end
+
+		function finalize(obj)
+			% Reenable Tiff library warnings if necessary
+			if PrevWarn
+				warning('on');
+			else
+				warning('off');
+			end
+		end
         
     end
     
