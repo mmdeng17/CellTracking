@@ -125,8 +125,6 @@ classdef MotionDetector < handle
                 for j=1:obj.NMets
                     Init{j} = obj.InData{obj.CurrFrame}{j}(obj.UnlinkFrom{obj.CurrFrame},:);
                     Fin{j} = obj.InData{i}{j}(obj.UnlinkTo{i},:);
-                    obj.Settings.Diffs(j)
-                    Fin{j}
                 end
                 
                 assign = getMinAssign(Init,Fin,obj.Settings.Diffs,...

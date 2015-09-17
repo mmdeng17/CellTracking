@@ -128,8 +128,9 @@ classdef CellTracker < handle
             obj.MotionDetect.linkNext();
         end
 
-		function resetMotion(obj)
+		function restartMotion(obj)
 			% Function to reset motion for 2nd phase (ie gap linking)
+			obj.MotionDetect.restart();
 		end
         
         function linkNextGap(obj)
