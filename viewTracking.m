@@ -777,7 +777,7 @@ switch h
             objMets = f.UserData.App.FcnSettings.ObjMets(1,:);
             metInd = find(objMets);
             for i=1:sum(objMets==1)
-                fN = fullfile(path,[file ' ' metrics{metInd(i)} ext]);
+                fN = fullfile(path,[file metrics{metInd(i)} ext]);
                 csvwrite(fN,selData(:,:,i));
             end
             msgbox(['Output data successfully written to ' outfile]);
