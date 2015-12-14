@@ -36,11 +36,15 @@ classdef ImageLoader < handle
         function initialize(obj)
 			% Disable TIFF library warnings
 			tmpStruct = warning('query','last');
-			if strcmp(tmpStruct.state,'on')
-				obj.PrevWarn = true;
-			else
-				obj.PrevWarn = false;
-			end
+			if numel(tmpStruct)~=0
+                if strcmp(tmpStruct.state,'on')
+                    obj.PrevWarn = true;
+                else
+                    obj.PrevWarn = false;
+                end
+            else
+                obj.PrevWarn = true;
+            end
 			warning('off');
 
             switch obj.Method
@@ -109,6 +113,9 @@ classdef ImageLoader < handle
                 
                 obj.Status = i;
             end
+
+            obj.Images = cellfun(@(x) double(x),obj.Images,'UniformOutput',false);
+            rmpath(obj.Path);
         end
         
         % Function to determine whether more images need to be loaded
@@ -157,15 +164,15 @@ classdef ImageLoader < handle
             if obj.Resize~=1
                 obj.Images{i} = imresize(obj.Images{i},obj.Resize);
             end
-            
+
             obj.Status = i;
+            if obj.Status==obj.NFrames
+                obj.Images = cellfun(@(x) double(x),obj.Images,'UniformOutput',false);
+                rmpath(obj.Path);
+            end
         end
 
 		function finalize(obj)
-			% convert image to double
-			obj.Images = cellfun(@(x) double(x),obj.Images,'UniformOutput',false);
-            rmpath(obj.Path);
-
 			% Reenable Tiff library warnings if necessary
 			if obj.PrevWarn
 				warning('on');

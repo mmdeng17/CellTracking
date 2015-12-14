@@ -108,7 +108,6 @@ classdef CellTracker < handle
                 obj.Data{i}{22}};
         end
         
-        
         function initMotion(obj)
             % Function to prep for motion detection.
             obj.MotionDetect = MotionDetector();

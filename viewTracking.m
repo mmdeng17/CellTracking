@@ -823,8 +823,17 @@ if e.NewData~=0
     end
     tmp1Data(e.Indices(1),e.Indices(2),end) = e.NewData;
     app.updateData(tmp1Data);
-    f.UserData.App = app;
+else
+    mets = find(app.FcnSettings.ObjMets(1,:)==1);
+    tmp1Data = app.DataArray;
+    for i=1:size(tmp1Data,3)-1
+        tmp1Data(e.Indices(1),e.Indices(2),i) = 0;
+    end
+    tmp1Data(e.Indices(1),e.Indices(2),end) = 0;
+    app.updateData(tmp1Data);
 end
+
+f.UserData.App = app;
 end
 
 %% GUI Display callbacks
