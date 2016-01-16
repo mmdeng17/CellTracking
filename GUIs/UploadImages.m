@@ -22,7 +22,7 @@ function varargout = UploadImages(varargin)
 
 % Edit the above text to modify the response to help UploadImages
 
-% Last Modified by GUIDE v2.5 14-Jan-2016 12:36:20
+% Last Modified by GUIDE v2.5 14-Jan-2016 17:39:33
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -177,6 +177,9 @@ switch hObject.Value
         handles.MultiFileEditPanel1.Title  = 'File Name Format';
         handles.MultiFileEditPanel2.Visible = 'off';
         handles.MultiFileEditPanel3.Visible = 'off';
+        handles.ImageListbox.UserData = {};
+        handles.ImageListbox.String = [];
+        handles.FileSelectPanel.UserData = {};
     case 2
         handles.SelectButton1.String = 'Select R...';
         handles.SelectButton3.Visible = 'on';
@@ -186,6 +189,9 @@ switch hObject.Value
         handles.MultiFileEditPanel1.Title  = 'Ch1 File Name Format';
         handles.MultiFileEditPanel2.Visible = 'on';
         handles.MultiFileEditPanel3.Visible = 'on';
+        handles.ImageListbox.UserData = {{},{},{}};
+        handles.ImageListbox.String = [];
+        handles.FileSelectPanel.UserData = {{},{},{}};
     case 3
         handles.SelectButton1.String = 'Select...';
         handles.SelectButton3.Visible = 'off';
@@ -195,6 +201,9 @@ switch hObject.Value
         handles.MultiFileEditPanel1.Title  = 'File Name Format';
         handles.MultiFileEditPanel2.Visible = 'off';
         handles.MultiFileEditPanel3.Visible = 'off';
+        handles.ImageListbox.UserData = {};
+        handles.ImageListbox.String = [];
+        handles.FileSelectPanel.UserData = {};
 end
 
 
@@ -218,25 +227,49 @@ function SelectButton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 handles = guihandles(getFig(hObject));
 
+switch handles.ImageTypeMenu.Value
+    case 2
+        titleString = 'Choose Ch1 images...';
+    case {1,3}
+        titleString = 'Choose images...';
+end
+
 [names,path] = uigetfile({'*.jpg;*.tif;*.png;*.gif','Image Files';'*.*','All Files'},...
-    'Choose Ch1 images...','','MultiSelect','on');
+    titleString,'','MultiSelect','on');
+handles.FileSelectPanel.UserData{1} = path;
 if ~isequal(names,0)
-    %Setts.File.Path = path;
     if ~iscell(names)
         names = {names};
     end
-%     Setts.File.FileNames{1} = [Setts.File.FileNames{1} names];
-%     set(hIms(3),'String',[Setts.File.FileNames{1} Setts.File.FileNames{2} Setts.File.FileNames{3}]);
-    handles.ImageListbox.String = names;
+    
+    handles.ImageListbox.UserData{1} = names;
+    switch handles.ImageTypeMenu.Value
+    case 2
+        handles.ImageListbox.String = [handles.ImageListbox.UserData{1},...
+            handles.ImageListbox.UserData{2},handles.ImageListbox.UserData{3}];
+    case {1,3}
+        handles.ImageListbox.String = handles.ImageListbox.UserData{1};
+    end
+    handles.ImageListbox.String
 else
     % No images - do nothing
 end
+
 
 % --- Executes on button press in ClearButton.
 function ClearButton_Callback(hObject, eventdata, handles)
 % hObject    handle to ClearButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+handles = guihandles(getFig(hObject));
+
+handles.ImageListbox.String = '';
+switch handles.ImageTypeMenu.Value
+    case 2
+        handles.ImageListbox.UserData = {{},{},{}};
+    case {1,3}
+        handles.ImageListbox.UserData = {};
+end
 
 
 
@@ -305,6 +338,22 @@ function SelectButton2_Callback(hObject, eventdata, handles)
 % hObject    handle to SelectButton2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+handles = guihandles(getFig(hObject));
+
+[names,path] = uigetfile({'*.jpg;*.tif;*.png;*.gif','Image Files';'*.*','All Files'},...
+    'Choose Ch2 images...','','MultiSelect','on');
+handles.FileSelectPanel.UserData{2} = path;
+if ~isequal(names,0)
+    if ~iscell(names)
+        names = {names};
+    end
+    
+    handles.ImageListbox.UserData{2} = names;
+    handles.ImageListbox.String = [handles.ImageListbox.UserData{1},...
+            handles.ImageListbox.UserData{2},handles.ImageListbox.UserData{3}];
+else
+    % No images - do nothing
+end
 
 
 % --- Executes on button press in SelectButton3.
@@ -312,7 +361,22 @@ function SelectButton3_Callback(hObject, eventdata, handles)
 % hObject    handle to SelectButton3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+handles = guihandles(getFig(hObject));
 
+[names,path] = uigetfile({'*.jpg;*.tif;*.png;*.gif','Image Files';'*.*','All Files'},...
+    'Choose Ch3 images...','','MultiSelect','on');
+handles.FileSelectPanel.UserData{3} = path;
+if ~isequal(names,0)
+    if ~iscell(names)
+        names = {names};
+    end
+    
+    handles.ImageListbox.UserData{3} = names;
+    handles.ImageListbox.String = [handles.ImageListbox.UserData{1},...
+            handles.ImageListbox.UserData{2},handles.ImageListbox.UserData{3}];
+else
+    % No images - do nothing
+end
 
 % --- Executes on selection change in FileNameStartMenu.
 function FileNameStartMenu_Callback(hObject, eventdata, handles)
@@ -338,18 +402,18 @@ end
 
 
 
-function FileNameFrames_Callback(hObject, eventdata, handles)
-% hObject    handle to FileNameFrames (see GCBO)
+function FileNameFrameEdit_Callback(hObject, eventdata, handles)
+% hObject    handle to FileNameFrameEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of FileNameFrames as text
-%        str2double(get(hObject,'String')) returns contents of FileNameFrames as a double
+% Hints: get(hObject,'String') returns contents of FileNameFrameEdit as text
+%        str2double(get(hObject,'String')) returns contents of FileNameFrameEdit as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function FileNameFrames_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to FileNameFrames (see GCBO)
+function FileNameFrameEdit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to FileNameFrameEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -407,18 +471,18 @@ end
 
 
 
-function MutlFileFrameEdit_Callback(hObject, eventdata, handles)
-% hObject    handle to MutlFileFrameEdit (see GCBO)
+function MultiFileFrameEdit_Callback(hObject, eventdata, handles)
+% hObject    handle to MultiFileFrameEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of MutlFileFrameEdit as text
-%        str2double(get(hObject,'String')) returns contents of MutlFileFrameEdit as a double
+% Hints: get(hObject,'String') returns contents of MultiFileFrameEdit as text
+%        str2double(get(hObject,'String')) returns contents of MultiFileFrameEdit as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function MutlFileFrameEdit_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to MutlFileFrameEdit (see GCBO)
+function MultiFileFrameEdit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to MultiFileFrameEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
