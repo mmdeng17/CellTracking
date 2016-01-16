@@ -75,7 +75,7 @@ classdef CellTracker < handle
             obj.ImLoader.loadNext();
         end
 		
-		function finLoad(obj);
+		function finLoad(obj)
 			obj.ImLoader.finalize();
 		end
         
