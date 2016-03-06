@@ -30,7 +30,9 @@ close(H);
 f.Visible = 'on';
 tmpUploadImagesSetts = struct('ImageType','RGB','UploadType','FileSelect',...
     'Names',[],'Frames',0,'Fields',0);
-f.UserData = struct('UploadImagesSetts',tmpUploadImagesSetts,'CorrectImagesSetts',[],...
+tmpCorrectImagesSetts = struct('Sigma',0,'Invert',0,'Resize',1);
+f.UserData = struct('UploadImagesSetts',tmpUploadImagesSetts,...
+    'CorrectImagesSetts',tmpCorrectImagesSetts,...
     'DetectObjectsSetts',[]);
 
 end
@@ -53,13 +55,27 @@ handles = guihandles(getFig(hObject));
 switch event.OldValue
     case handles.MainTab
     case handles.UploadImagesTab
-        updateUploadImages(hObject);
+        postUpdateUploadImages(hObject);
+    case handles.CorrectImagesTab
+        postUpdateCorrectImages(hObject);
+end
+
+switch event.NewValue
+    case handles.MainTab
+    case handles.UploadImagesTab
+        preUpdateUploadImages(hObject);
+    case handles.CorrectImagesTab
+        preUpdateCorrectImages(hObject);
 end
 
 end
 
 
-function updateUploadImages(hObject)
+function preUpdateUploadImages(hObject)
+end
+
+
+function postUpdateUploadImages(hObject)
 handles = guihandles(getFig(hObject));
 tmpUploadImagesSetts = struct('ImageType','RGB','UploadType','FileSelect',...
     'Names',{{}},'Path',{{}},'Frames',0,'Fields',0);
@@ -104,7 +120,22 @@ switch tmpUploadImagesSetts.UploadType
         tmpUploadImagesSetts.Frames = str2double(handles.FileNameFrameEdit.String);
 end
 
-tmpUploadImagesSetts
 f = getFig(hObject);
 f.UserData.UploadImagesSetts = tmpUploadImagesSetts;
+end
+
+function preUpdateCorrectImages(hObject)
+end
+
+
+function postUpdateCorrectImages(hObject)
+handles = guihandles(getFig(hObject));
+tmpCorrectImagesSetts = struct('Sigma',0,'Invert',0,'Resize',1);
+
+tmpCorrectImagesSetts.Sigma  = str2double(handles.CorrectImagesSigmaEdit.String);
+tmpCorrectImagesSetts.Invert = handles.CorrectImagesInvertCheck.String;
+tmpCorrectImagesSetts.Resize = str2double(handles.CorrectImagesResizeEdit.String);
+
+f = getFig(hObject);
+f.UserData.CorrectImagesSetts = tmpCorrectImagesSetts;
 end
