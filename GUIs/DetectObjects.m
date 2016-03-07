@@ -22,7 +22,7 @@ function varargout = DetectObjects(varargin)
 
 % Edit the above text to modify the response to help DetectObjects
 
-% Last Modified by GUIDE v2.5 06-Mar-2016 22:03:51
+% Last Modified by GUIDE v2.5 07-Mar-2016 00:02:15
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -92,14 +92,14 @@ function varargout = DetectObjects_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% --- Executes on selection change in DetectObjectsAlgorithmPopupMenu.
-function DetectObjectsAlgorithmPopupMenu_Callback(hObject, eventdata, handles)
-% hObject    handle to DetectObjectsAlgorithmPopupMenu (see GCBO)
+% --- Executes on selection change in DetectObjectsMethodMenu.
+function DetectObjectsMethodMenu_Callback(hObject, eventdata, handles)
+% hObject    handle to DetectObjectsMethodMenu (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: contents = cellstr(get(hObject,'String')) returns DetectObjectsAlgorithmPopupMenu contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from DetectObjectsAlgorithmPopupMenu
+% Hints: contents = cellstr(get(hObject,'String')) returns DetectObjectsMethodMenu contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from DetectObjectsMethodMenu
 handles = guihandles(getFig(hObject));
 switch hObject.Value
     case 1
@@ -112,8 +112,8 @@ end
 
 
 % --- Executes during object creation, after setting all properties.
-function DetectObjectsAlgorithmPopupMenu_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to DetectObjectsAlgorithmPopupMenu (see GCBO)
+function DetectObjectsMethodMenu_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DetectObjectsMethodMenu (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -124,37 +124,37 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in ThreshWaterMergeObjCheck.
-function ThreshWaterMergeObjCheck_Callback(hObject, eventdata, handles)
-% hObject    handle to ThreshWaterMergeObjCheck (see GCBO)
+% --- Executes on button press in DetectObjectsThreshWaterMergeCheck.
+function DetectObjectsThreshWaterMergeCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DetectObjectsThreshWaterMergeCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of ThreshWaterMergeObjCheck
+% Hint: get(hObject,'Value') returns toggle state of DetectObjectsThreshWaterMergeCheck
 
 
-% --- Executes on button press in checkbox51.
-function checkbox51_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox51 (see GCBO)
+% --- Executes on button press in DetectObjectsThreshWaterPostProcCheck.
+function DetectObjectsThreshWaterPostProcCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DetectObjectsThreshWaterPostProcCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox51
+% Hint: get(hObject,'Value') returns toggle state of DetectObjectsThreshWaterPostProcCheck
 
 
 
-function edit115_Callback(hObject, eventdata, handles)
-% hObject    handle to edit115 (see GCBO)
+function DetectObjectsThreshWaterMinSizeEdit_Callback(hObject, eventdata, handles)
+% hObject    handle to DetectObjectsThreshWaterMinSizeEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit115 as text
-%        str2double(get(hObject,'String')) returns contents of edit115 as a double
+% Hints: get(hObject,'String') returns contents of DetectObjectsThreshWaterMinSizeEdit as text
+%        str2double(get(hObject,'String')) returns contents of DetectObjectsThreshWaterMinSizeEdit as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit115_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit115 (see GCBO)
+function DetectObjectsThreshWaterMinSizeEdit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DetectObjectsThreshWaterMinSizeEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -166,18 +166,18 @@ end
 
 
 
-function edit116_Callback(hObject, eventdata, handles)
-% hObject    handle to edit116 (see GCBO)
+function DetectObjectsThreshWaterMaxSizeEdit_Callback(hObject, eventdata, handles)
+% hObject    handle to DetectObjectsThreshWaterMaxSizeEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit116 as text
-%        str2double(get(hObject,'String')) returns contents of edit116 as a double
+% Hints: get(hObject,'String') returns contents of DetectObjectsThreshWaterMaxSizeEdit as text
+%        str2double(get(hObject,'String')) returns contents of DetectObjectsThreshWaterMaxSizeEdit as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit116_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit116 (see GCBO)
+function DetectObjectsThreshWaterMaxSizeEdit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DetectObjectsThreshWaterMaxSizeEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -189,18 +189,18 @@ end
 
 
 
-function edit5_Callback(hObject, eventdata, handles)
-% hObject    handle to edit5 (see GCBO)
+function DetectObjectsEdgeWaterThreshEdit_Callback(hObject, eventdata, handles)
+% hObject    handle to DetectObjectsEdgeWaterThreshEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit5 as text
-%        str2double(get(hObject,'String')) returns contents of edit5 as a double
+% Hints: get(hObject,'String') returns contents of DetectObjectsEdgeWaterThreshEdit as text
+%        str2double(get(hObject,'String')) returns contents of DetectObjectsEdgeWaterThreshEdit as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit5_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit5 (see GCBO)
+function DetectObjectsEdgeWaterThreshEdit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DetectObjectsEdgeWaterThreshEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -212,18 +212,18 @@ end
 
 
 
-function edit1_Callback(hObject, eventdata, handles)
-% hObject    handle to edit1 (see GCBO)
+function DetectObjectsEdgeWaterMinSizeEdit_Callback(hObject, eventdata, handles)
+% hObject    handle to DetectObjectsEdgeWaterMinSizeEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit1 as text
-%        str2double(get(hObject,'String')) returns contents of edit1 as a double
+% Hints: get(hObject,'String') returns contents of DetectObjectsEdgeWaterMinSizeEdit as text
+%        str2double(get(hObject,'String')) returns contents of DetectObjectsEdgeWaterMinSizeEdit as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit1 (see GCBO)
+function DetectObjectsEdgeWaterMinSizeEdit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DetectObjectsEdgeWaterMinSizeEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -235,18 +235,18 @@ end
 
 
 
-function edit3_Callback(hObject, eventdata, handles)
-% hObject    handle to edit3 (see GCBO)
+function DetectObjectsEdgeWaterMaxSizeEdit_Callback(hObject, eventdata, handles)
+% hObject    handle to DetectObjectsEdgeWaterMaxSizeEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit3 as text
-%        str2double(get(hObject,'String')) returns contents of edit3 as a double
+% Hints: get(hObject,'String') returns contents of DetectObjectsEdgeWaterMaxSizeEdit as text
+%        str2double(get(hObject,'String')) returns contents of DetectObjectsEdgeWaterMaxSizeEdit as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit3_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit3 (see GCBO)
+function DetectObjectsEdgeWaterMaxSizeEdit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DetectObjectsEdgeWaterMaxSizeEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -532,28 +532,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in checkbox13.
-function checkbox13_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox13 (see GCBO)
+% --- Executes on button press in DORMeanCheck.
+function DORMeanCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DORMeanCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox13
+% Hint: get(hObject,'Value') returns toggle state of DORMeanCheck
 
 
 
-function edit32_Callback(hObject, eventdata, handles)
-% hObject    handle to edit32 (see GCBO)
+function DORMeanMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DORMeanMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit32 as text
-%        str2double(get(hObject,'String')) returns contents of edit32 as a double
+% Hints: get(hObject,'String') returns contents of DORMeanMin as text
+%        str2double(get(hObject,'String')) returns contents of DORMeanMin as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit32_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit32 (see GCBO)
+function DORMeanMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DORMeanMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -565,18 +565,18 @@ end
 
 
 
-function edit33_Callback(hObject, eventdata, handles)
-% hObject    handle to edit33 (see GCBO)
+function DORMeanMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DORMeanMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit33 as text
-%        str2double(get(hObject,'String')) returns contents of edit33 as a double
+% Hints: get(hObject,'String') returns contents of DORMeanMax as text
+%        str2double(get(hObject,'String')) returns contents of DORMeanMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit33_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit33 (see GCBO)
+function DORMeanMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DORMeanMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -1798,28 +1798,28 @@ end
 clc
 
 
-% --- Executes on button press in checkbox53.
-function checkbox53_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox53 (see GCBO)
+% --- Executes on button press in DORTotCheck.
+function DORTotCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DORTotCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox53
+% Hint: get(hObject,'Value') returns toggle state of DORTotCheck
 
 
 
-function edit119_Callback(hObject, eventdata, handles)
-% hObject    handle to edit119 (see GCBO)
+function DORTotMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DORTotMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit119 as text
-%        str2double(get(hObject,'String')) returns contents of edit119 as a double
+% Hints: get(hObject,'String') returns contents of DORTotMin as text
+%        str2double(get(hObject,'String')) returns contents of DORTotMin as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit119_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit119 (see GCBO)
+function DORTotMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DORTotMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -1831,18 +1831,18 @@ end
 
 
 
-function edit120_Callback(hObject, eventdata, handles)
-% hObject    handle to edit120 (see GCBO)
+function DORTotMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DORTotMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit120 as text
-%        str2double(get(hObject,'String')) returns contents of edit120 as a double
+% Hints: get(hObject,'String') returns contents of DORTotMax as text
+%        str2double(get(hObject,'String')) returns contents of DORTotMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit120_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit120 (see GCBO)
+function DORTotMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DORTotMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -1853,83 +1853,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in checkbox58.
-function checkbox58_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox58 (see GCBO)
+% --- Executes on button press in DORMedCheck.
+function DORMedCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DORMedCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox58
+% Hint: get(hObject,'Value') returns toggle state of DORMedCheck
 
 
 
-function edit129_Callback(hObject, eventdata, handles)
-% hObject    handle to edit129 (see GCBO)
+function DORMedMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DORMedMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit129 as text
-%        str2double(get(hObject,'String')) returns contents of edit129 as a double
+% Hints: get(hObject,'String') returns contents of DORMedMin as text
+%        str2double(get(hObject,'String')) returns contents of DORMedMin as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit129_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit129 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function edit130_Callback(hObject, eventdata, handles)
-% hObject    handle to edit130 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit130 as text
-%        str2double(get(hObject,'String')) returns contents of edit130 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit130_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit130 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on button press in checkbox57.
-function checkbox57_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox57 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of checkbox57
-
-
-
-function edit127_Callback(hObject, eventdata, handles)
-% hObject    handle to edit127 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit127 as text
-%        str2double(get(hObject,'String')) returns contents of edit127 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit127_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit127 (see GCBO)
+function DORMedMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DORMedMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -1941,18 +1886,18 @@ end
 
 
 
-function edit128_Callback(hObject, eventdata, handles)
-% hObject    handle to edit128 (see GCBO)
+function DORMedMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DORMedMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit128 as text
-%        str2double(get(hObject,'String')) returns contents of edit128 as a double
+% Hints: get(hObject,'String') returns contents of DORMedMax as text
+%        str2double(get(hObject,'String')) returns contents of DORMedMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit128_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit128 (see GCBO)
+function DORMedMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DORMedMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -1963,83 +1908,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in checkbox56.
-function checkbox56_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox56 (see GCBO)
+% --- Executes on button press in DORStdCheck.
+function DORStdCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DORStdCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox56
+% Hint: get(hObject,'Value') returns toggle state of DORStdCheck
 
 
 
-function edit125_Callback(hObject, eventdata, handles)
-% hObject    handle to edit125 (see GCBO)
+function DORStdMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DORStdMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit125 as text
-%        str2double(get(hObject,'String')) returns contents of edit125 as a double
+% Hints: get(hObject,'String') returns contents of DORStdMin as text
+%        str2double(get(hObject,'String')) returns contents of DORStdMin as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit125_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit125 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function edit126_Callback(hObject, eventdata, handles)
-% hObject    handle to edit126 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit126 as text
-%        str2double(get(hObject,'String')) returns contents of edit126 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit126_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit126 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on button press in checkbox55.
-function checkbox55_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox55 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of checkbox55
-
-
-
-function edit123_Callback(hObject, eventdata, handles)
-% hObject    handle to edit123 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit123 as text
-%        str2double(get(hObject,'String')) returns contents of edit123 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit123_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit123 (see GCBO)
+function DORStdMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DORStdMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -2051,18 +1941,18 @@ end
 
 
 
-function edit124_Callback(hObject, eventdata, handles)
-% hObject    handle to edit124 (see GCBO)
+function DORStdMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DORStdMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit124 as text
-%        str2double(get(hObject,'String')) returns contents of edit124 as a double
+% Hints: get(hObject,'String') returns contents of DORStdMax as text
+%        str2double(get(hObject,'String')) returns contents of DORStdMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit124_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit124 (see GCBO)
+function DORStdMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DORStdMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -2073,28 +1963,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in checkbox54.
-function checkbox54_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox54 (see GCBO)
+% --- Executes on button press in DORIQRCheck.
+function DORIQRCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DORIQRCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox54
+% Hint: get(hObject,'Value') returns toggle state of DORIQRCheck
 
 
 
-function edit121_Callback(hObject, eventdata, handles)
-% hObject    handle to edit121 (see GCBO)
+function DORIQRMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DORIQRMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit121 as text
-%        str2double(get(hObject,'String')) returns contents of edit121 as a double
+% Hints: get(hObject,'String') returns contents of DORIQRMin as text
+%        str2double(get(hObject,'String')) returns contents of DORIQRMin as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit121_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit121 (see GCBO)
+function DORIQRMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DORIQRMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -2106,18 +1996,128 @@ end
 
 
 
-function edit122_Callback(hObject, eventdata, handles)
-% hObject    handle to edit122 (see GCBO)
+function DORIQRMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DORIQRMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit122 as text
-%        str2double(get(hObject,'String')) returns contents of edit122 as a double
+% Hints: get(hObject,'String') returns contents of DORIQRMax as text
+%        str2double(get(hObject,'String')) returns contents of DORIQRMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit122_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit122 (see GCBO)
+function DORIQRMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DORIQRMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in DORMinCheck.
+function DORMinCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DORMinCheck (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of DORMinCheck
+
+
+
+function DORMinMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DORMinMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DORMinMin as text
+%        str2double(get(hObject,'String')) returns contents of DORMinMin as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DORMinMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DORMinMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function DORMinMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DORMinMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DORMinMax as text
+%        str2double(get(hObject,'String')) returns contents of DORMinMax as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DORMinMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DORMinMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in DORMaxCheck.
+function DORMaxCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DORMaxCheck (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of DORMaxCheck
+
+
+
+function DORMaxMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DORMaxMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DORMaxMin as text
+%        str2double(get(hObject,'String')) returns contents of DORMaxMin as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DORMaxMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DORMaxMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function DORMaxMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DORMaxMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DORMaxMax as text
+%        str2double(get(hObject,'String')) returns contents of DORMaxMax as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DORMaxMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DORMaxMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -2898,28 +2898,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in checkbox73.
-function checkbox73_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox73 (see GCBO)
+% --- Executes on button press in DOGrMedCheck.
+function DOGrMedCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrMedCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox73
+% Hint: get(hObject,'Value') returns toggle state of DOGrMedCheck
 
 
 
-function edit159_Callback(hObject, eventdata, handles)
-% hObject    handle to edit159 (see GCBO)
+function DOGrMedMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrMedMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit159 as text
-%        str2double(get(hObject,'String')) returns contents of edit159 as a double
+% Hints: get(hObject,'String') returns contents of DOGrMedMin as text
+%        str2double(get(hObject,'String')) returns contents of DOGrMedMin as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit159_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit159 (see GCBO)
+function DOGrMedMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGrMedMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -2931,18 +2931,18 @@ end
 
 
 
-function edit160_Callback(hObject, eventdata, handles)
-% hObject    handle to edit160 (see GCBO)
+function DOGrMedMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrMedMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit160 as text
-%        str2double(get(hObject,'String')) returns contents of edit160 as a double
+% Hints: get(hObject,'String') returns contents of DOGrMedMax as text
+%        str2double(get(hObject,'String')) returns contents of DOGrMedMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit160_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit160 (see GCBO)
+function DOGrMedMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGrMedMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -2953,83 +2953,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in checkbox74.
-function checkbox74_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox74 (see GCBO)
+% --- Executes on button press in DOGrStdCheck.
+function DOGrStdCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrStdCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox74
+% Hint: get(hObject,'Value') returns toggle state of DOGrStdCheck
 
 
 
-function edit161_Callback(hObject, eventdata, handles)
-% hObject    handle to edit161 (see GCBO)
+function DOGrStdMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrStdMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit161 as text
-%        str2double(get(hObject,'String')) returns contents of edit161 as a double
+% Hints: get(hObject,'String') returns contents of DOGrStdMin as text
+%        str2double(get(hObject,'String')) returns contents of DOGrStdMin as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit161_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit161 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function edit162_Callback(hObject, eventdata, handles)
-% hObject    handle to edit162 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit162 as text
-%        str2double(get(hObject,'String')) returns contents of edit162 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit162_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit162 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on button press in checkbox75.
-function checkbox75_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox75 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of checkbox75
-
-
-
-function edit163_Callback(hObject, eventdata, handles)
-% hObject    handle to edit163 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit163 as text
-%        str2double(get(hObject,'String')) returns contents of edit163 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit163_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit163 (see GCBO)
+function DOGrStdMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGrStdMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3041,18 +2986,18 @@ end
 
 
 
-function edit164_Callback(hObject, eventdata, handles)
-% hObject    handle to edit164 (see GCBO)
+function DOGrStdMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrStdMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit164 as text
-%        str2double(get(hObject,'String')) returns contents of edit164 as a double
+% Hints: get(hObject,'String') returns contents of DOGrStdMax as text
+%        str2double(get(hObject,'String')) returns contents of DOGrStdMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit164_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit164 (see GCBO)
+function DOGrStdMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGrStdMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3063,83 +3008,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in checkbox76.
-function checkbox76_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox76 (see GCBO)
+% --- Executes on button press in DOGrIQRCheck.
+function DOGrIQRCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrIQRCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox76
+% Hint: get(hObject,'Value') returns toggle state of DOGrIQRCheck
 
 
 
-function edit165_Callback(hObject, eventdata, handles)
-% hObject    handle to edit165 (see GCBO)
+function DOGrIQRMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrIQRMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit165 as text
-%        str2double(get(hObject,'String')) returns contents of edit165 as a double
+% Hints: get(hObject,'String') returns contents of DOGrIQRMin as text
+%        str2double(get(hObject,'String')) returns contents of DOGrIQRMin as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit165_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit165 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function edit166_Callback(hObject, eventdata, handles)
-% hObject    handle to edit166 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit166 as text
-%        str2double(get(hObject,'String')) returns contents of edit166 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit166_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit166 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on button press in checkbox77.
-function checkbox77_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox77 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of checkbox77
-
-
-
-function edit167_Callback(hObject, eventdata, handles)
-% hObject    handle to edit167 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit167 as text
-%        str2double(get(hObject,'String')) returns contents of edit167 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit167_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit167 (see GCBO)
+function DOGrIQRMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGrIQRMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3151,18 +3041,18 @@ end
 
 
 
-function edit168_Callback(hObject, eventdata, handles)
-% hObject    handle to edit168 (see GCBO)
+function DOGrIQRMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrIQRMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit168 as text
-%        str2double(get(hObject,'String')) returns contents of edit168 as a double
+% Hints: get(hObject,'String') returns contents of DOGrIQRMax as text
+%        str2double(get(hObject,'String')) returns contents of DOGrIQRMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit168_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit168 (see GCBO)
+function DOGrIQRMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGrIQRMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3173,83 +3063,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in checkbox78.
-function checkbox78_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox78 (see GCBO)
+% --- Executes on button press in DOGrMinCheck.
+function DOGrMinCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrMinCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox78
+% Hint: get(hObject,'Value') returns toggle state of DOGrMinCheck
 
 
 
-function edit169_Callback(hObject, eventdata, handles)
-% hObject    handle to edit169 (see GCBO)
+function DOGrMinMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrMinMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit169 as text
-%        str2double(get(hObject,'String')) returns contents of edit169 as a double
+% Hints: get(hObject,'String') returns contents of DOGrMinMin as text
+%        str2double(get(hObject,'String')) returns contents of DOGrMinMin as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit169_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit169 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function edit170_Callback(hObject, eventdata, handles)
-% hObject    handle to edit170 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit170 as text
-%        str2double(get(hObject,'String')) returns contents of edit170 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit170_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit170 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on button press in checkbox79.
-function checkbox79_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox79 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of checkbox79
-
-
-
-function edit171_Callback(hObject, eventdata, handles)
-% hObject    handle to edit171 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit171 as text
-%        str2double(get(hObject,'String')) returns contents of edit171 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit171_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit171 (see GCBO)
+function DOGrMinMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGrMinMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3261,18 +3096,18 @@ end
 
 
 
-function edit172_Callback(hObject, eventdata, handles)
-% hObject    handle to edit172 (see GCBO)
+function DOGrMinMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrMinMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit172 as text
-%        str2double(get(hObject,'String')) returns contents of edit172 as a double
+% Hints: get(hObject,'String') returns contents of DOGrMinMax as text
+%        str2double(get(hObject,'String')) returns contents of DOGrMinMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit172_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit172 (see GCBO)
+function DOGrMinMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGrMinMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3283,83 +3118,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in checkbox80.
-function checkbox80_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox80 (see GCBO)
+% --- Executes on button press in DOGrMaxCheck.
+function DOGrMaxCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrMaxCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox80
+% Hint: get(hObject,'Value') returns toggle state of DOGrMaxCheck
 
 
 
-function edit173_Callback(hObject, eventdata, handles)
-% hObject    handle to edit173 (see GCBO)
+function DOGrMaxMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrMaxMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit173 as text
-%        str2double(get(hObject,'String')) returns contents of edit173 as a double
+% Hints: get(hObject,'String') returns contents of DOGrMaxMin as text
+%        str2double(get(hObject,'String')) returns contents of DOGrMaxMin as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit173_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit173 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function edit174_Callback(hObject, eventdata, handles)
-% hObject    handle to edit174 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit174 as text
-%        str2double(get(hObject,'String')) returns contents of edit174 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit174_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit174 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on button press in checkbox81.
-function checkbox81_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox81 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of checkbox81
-
-
-
-function edit175_Callback(hObject, eventdata, handles)
-% hObject    handle to edit175 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit175 as text
-%        str2double(get(hObject,'String')) returns contents of edit175 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit175_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit175 (see GCBO)
+function DOGrMaxMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGrMaxMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3371,18 +3151,18 @@ end
 
 
 
-function edit176_Callback(hObject, eventdata, handles)
-% hObject    handle to edit176 (see GCBO)
+function DOGrMaxMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrMaxMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit176 as text
-%        str2double(get(hObject,'String')) returns contents of edit176 as a double
+% Hints: get(hObject,'String') returns contents of DOGrMaxMax as text
+%        str2double(get(hObject,'String')) returns contents of DOGrMaxMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit176_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit176 (see GCBO)
+function DOGrMaxMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGrMaxMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3393,83 +3173,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in checkbox82.
-function checkbox82_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox82 (see GCBO)
+% --- Executes on button press in DOGrTotCheck.
+function DOGrTotCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrTotCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox82
+% Hint: get(hObject,'Value') returns toggle state of DOGrTotCheck
 
 
 
-function edit177_Callback(hObject, eventdata, handles)
-% hObject    handle to edit177 (see GCBO)
+function DOGrTotMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrTotMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit177 as text
-%        str2double(get(hObject,'String')) returns contents of edit177 as a double
+% Hints: get(hObject,'String') returns contents of DOGrTotMin as text
+%        str2double(get(hObject,'String')) returns contents of DOGrTotMin as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit177_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit177 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function edit178_Callback(hObject, eventdata, handles)
-% hObject    handle to edit178 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit178 as text
-%        str2double(get(hObject,'String')) returns contents of edit178 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit178_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit178 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on button press in checkbox83.
-function checkbox83_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox83 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of checkbox83
-
-
-
-function edit179_Callback(hObject, eventdata, handles)
-% hObject    handle to edit179 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit179 as text
-%        str2double(get(hObject,'String')) returns contents of edit179 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit179_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit179 (see GCBO)
+function DOGrTotMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGrTotMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3481,18 +3206,18 @@ end
 
 
 
-function edit180_Callback(hObject, eventdata, handles)
-% hObject    handle to edit180 (see GCBO)
+function DOGrTotMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrTotMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit180 as text
-%        str2double(get(hObject,'String')) returns contents of edit180 as a double
+% Hints: get(hObject,'String') returns contents of DOGrTotMax as text
+%        str2double(get(hObject,'String')) returns contents of DOGrTotMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit180_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit180 (see GCBO)
+function DOGrTotMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGrTotMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3503,83 +3228,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in checkbox84.
-function checkbox84_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox84 (see GCBO)
+% --- Executes on button press in DOGrMeanCheck.
+function DOGrMeanCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrMeanCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox84
+% Hint: get(hObject,'Value') returns toggle state of DOGrMeanCheck
 
 
 
-function edit181_Callback(hObject, eventdata, handles)
-% hObject    handle to edit181 (see GCBO)
+function DOGrMeanMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrMeanMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit181 as text
-%        str2double(get(hObject,'String')) returns contents of edit181 as a double
+% Hints: get(hObject,'String') returns contents of DOGrMeanMin as text
+%        str2double(get(hObject,'String')) returns contents of DOGrMeanMin as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit181_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit181 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function edit182_Callback(hObject, eventdata, handles)
-% hObject    handle to edit182 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit182 as text
-%        str2double(get(hObject,'String')) returns contents of edit182 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit182_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit182 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on button press in checkbox85.
-function checkbox85_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox85 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of checkbox85
-
-
-
-function edit183_Callback(hObject, eventdata, handles)
-% hObject    handle to edit183 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit183 as text
-%        str2double(get(hObject,'String')) returns contents of edit183 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit183_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit183 (see GCBO)
+function DOGrMeanMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGrMeanMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3591,18 +3261,18 @@ end
 
 
 
-function edit184_Callback(hObject, eventdata, handles)
-% hObject    handle to edit184 (see GCBO)
+function DOGrMeanMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGrMeanMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit184 as text
-%        str2double(get(hObject,'String')) returns contents of edit184 as a double
+% Hints: get(hObject,'String') returns contents of DOGrMeanMax as text
+%        str2double(get(hObject,'String')) returns contents of DOGrMeanMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit184_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit184 (see GCBO)
+function DOGrMeanMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGrMeanMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3613,51 +3283,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in checkbox86.
-function checkbox86_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox86 (see GCBO)
+% --- Executes on button press in DOBMedCheck.
+function DOBMedCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBMedCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox86
+% Hint: get(hObject,'Value') returns toggle state of DOBMedCheck
 
 
 
-function edit185_Callback(hObject, eventdata, handles)
-% hObject    handle to edit185 (see GCBO)
+function DOBMedMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBMedMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit185 as text
-%        str2double(get(hObject,'String')) returns contents of edit185 as a double
+% Hints: get(hObject,'String') returns contents of DOBMedMin as text
+%        str2double(get(hObject,'String')) returns contents of DOBMedMin as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit185_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit185 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function edit186_Callback(hObject, eventdata, handles)
-% hObject    handle to edit186 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit186 as text
-%        str2double(get(hObject,'String')) returns contents of edit186 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit186_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit186 (see GCBO)
+function DOBMedMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOBMedMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3669,18 +3316,50 @@ end
 
 
 
-function edit188_Callback(hObject, eventdata, handles)
-% hObject    handle to edit188 (see GCBO)
+function DOBMedMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBMedMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit188 as text
-%        str2double(get(hObject,'String')) returns contents of edit188 as a double
+% Hints: get(hObject,'String') returns contents of DOBMedMax as text
+%        str2double(get(hObject,'String')) returns contents of DOBMedMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit188_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit188 (see GCBO)
+function DOBMedMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOBMedMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in DOBStdCheck.
+function DOBStdCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBStdCheck (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of DOBStdCheck
+
+
+
+function DOBStdMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBStdMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOBStdMin as text
+%        str2double(get(hObject,'String')) returns contents of DOBStdMin as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOBStdMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOBStdMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3692,18 +3371,18 @@ end
 
 
 
-function edit187_Callback(hObject, eventdata, handles)
-% hObject    handle to edit187 (see GCBO)
+function DOBStdMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBStdMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit187 as text
-%        str2double(get(hObject,'String')) returns contents of edit187 as a double
+% Hints: get(hObject,'String') returns contents of DOBStdMax as text
+%        str2double(get(hObject,'String')) returns contents of DOBStdMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit187_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit187 (see GCBO)
+function DOBStdMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOBStdMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3714,83 +3393,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in checkbox87.
-function checkbox87_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox87 (see GCBO)
+% --- Executes on button press in DOBIQRCheck.
+function DOBIQRCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBIQRCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox87
+% Hint: get(hObject,'Value') returns toggle state of DOBIQRCheck
 
 
 
-function edit199_Callback(hObject, eventdata, handles)
-% hObject    handle to edit199 (see GCBO)
+function DOBIQRMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBIQRMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit199 as text
-%        str2double(get(hObject,'String')) returns contents of edit199 as a double
+% Hints: get(hObject,'String') returns contents of DOBIQRMin as text
+%        str2double(get(hObject,'String')) returns contents of DOBIQRMin as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit199_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit199 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function edit200_Callback(hObject, eventdata, handles)
-% hObject    handle to edit200 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit200 as text
-%        str2double(get(hObject,'String')) returns contents of edit200 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit200_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit200 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on button press in checkbox93.
-function checkbox93_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox93 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of checkbox93
-
-
-
-function edit197_Callback(hObject, eventdata, handles)
-% hObject    handle to edit197 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit197 as text
-%        str2double(get(hObject,'String')) returns contents of edit197 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit197_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit197 (see GCBO)
+function DOBIQRMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOBIQRMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3802,18 +3426,18 @@ end
 
 
 
-function edit198_Callback(hObject, eventdata, handles)
-% hObject    handle to edit198 (see GCBO)
+function DOBIQRMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBIQRMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit198 as text
-%        str2double(get(hObject,'String')) returns contents of edit198 as a double
+% Hints: get(hObject,'String') returns contents of DOBIQRMax as text
+%        str2double(get(hObject,'String')) returns contents of DOBIQRMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit198_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit198 (see GCBO)
+function DOBIQRMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOBIQRMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3824,83 +3448,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in checkbox92.
-function checkbox92_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox92 (see GCBO)
+% --- Executes on button press in DOBMinCheck.
+function DOBMinCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBMinCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox92
+% Hint: get(hObject,'Value') returns toggle state of DOBMinCheck
 
 
 
-function edit195_Callback(hObject, eventdata, handles)
-% hObject    handle to edit195 (see GCBO)
+function DOBMinMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBMinMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit195 as text
-%        str2double(get(hObject,'String')) returns contents of edit195 as a double
+% Hints: get(hObject,'String') returns contents of DOBMinMin as text
+%        str2double(get(hObject,'String')) returns contents of DOBMinMin as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit195_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit195 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function edit196_Callback(hObject, eventdata, handles)
-% hObject    handle to edit196 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit196 as text
-%        str2double(get(hObject,'String')) returns contents of edit196 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit196_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit196 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on button press in checkbox91.
-function checkbox91_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox91 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of checkbox91
-
-
-
-function edit193_Callback(hObject, eventdata, handles)
-% hObject    handle to edit193 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit193 as text
-%        str2double(get(hObject,'String')) returns contents of edit193 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit193_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit193 (see GCBO)
+function DOBMinMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOBMinMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3912,18 +3481,18 @@ end
 
 
 
-function edit194_Callback(hObject, eventdata, handles)
-% hObject    handle to edit194 (see GCBO)
+function DOBMinMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBMinMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit194 as text
-%        str2double(get(hObject,'String')) returns contents of edit194 as a double
+% Hints: get(hObject,'String') returns contents of DOBMinMax as text
+%        str2double(get(hObject,'String')) returns contents of DOBMinMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit194_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit194 (see GCBO)
+function DOBMinMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOBMinMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -3934,83 +3503,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in checkbox90.
-function checkbox90_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox90 (see GCBO)
+% --- Executes on button press in DOBMaxCheck.
+function DOBMaxCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBMaxCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox90
+% Hint: get(hObject,'Value') returns toggle state of DOBMaxCheck
 
 
 
-function edit191_Callback(hObject, eventdata, handles)
-% hObject    handle to edit191 (see GCBO)
+function DOBMaxMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBMaxMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit191 as text
-%        str2double(get(hObject,'String')) returns contents of edit191 as a double
+% Hints: get(hObject,'String') returns contents of DOBMaxMin as text
+%        str2double(get(hObject,'String')) returns contents of DOBMaxMin as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit191_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit191 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function edit192_Callback(hObject, eventdata, handles)
-% hObject    handle to edit192 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit192 as text
-%        str2double(get(hObject,'String')) returns contents of edit192 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit192_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit192 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on button press in checkbox89.
-function checkbox89_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox89 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of checkbox89
-
-
-
-function edit189_Callback(hObject, eventdata, handles)
-% hObject    handle to edit189 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit189 as text
-%        str2double(get(hObject,'String')) returns contents of edit189 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit189_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit189 (see GCBO)
+function DOBMaxMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOBMaxMin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -4022,18 +3536,18 @@ end
 
 
 
-function edit190_Callback(hObject, eventdata, handles)
-% hObject    handle to edit190 (see GCBO)
+function DOBMaxMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBMaxMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit190 as text
-%        str2double(get(hObject,'String')) returns contents of edit190 as a double
+% Hints: get(hObject,'String') returns contents of DOBMaxMax as text
+%        str2double(get(hObject,'String')) returns contents of DOBMaxMax as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit190_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit190 (see GCBO)
+function DOBMaxMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOBMaxMax (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -4044,10 +3558,496 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in checkbox88.
-function checkbox88_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox88 (see GCBO)
+% --- Executes on button press in DOBTotCheck.
+function DOBTotCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBTotCheck (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox88
+% Hint: get(hObject,'Value') returns toggle state of DOBTotCheck
+
+
+
+function DOBTotMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBTotMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOBTotMin as text
+%        str2double(get(hObject,'String')) returns contents of DOBTotMin as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOBTotMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOBTotMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function DOBTotMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBTotMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOBTotMax as text
+%        str2double(get(hObject,'String')) returns contents of DOBTotMax as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOBTotMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOBTotMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in DOBMeanCheck.
+function DOBMeanCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBMeanCheck (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of DOBMeanCheck
+
+
+
+function DOBMeanMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBMeanMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOBMeanMin as text
+%        str2double(get(hObject,'String')) returns contents of DOBMeanMin as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOBMeanMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOBMeanMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function DOBMeanMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOBMeanMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOBMeanMax as text
+%        str2double(get(hObject,'String')) returns contents of DOBMeanMax as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOBMeanMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOBMeanMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function DOGAreaMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGAreaMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOGAreaMax as text
+%        str2double(get(hObject,'String')) returns contents of DOGAreaMax as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOGAreaMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGAreaMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function DOGAreaMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGAreaMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOGAreaMin as text
+%        str2double(get(hObject,'String')) returns contents of DOGAreaMin as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOGAreaMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGAreaMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in DOGAreaCheck.
+function DOGAreaCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGAreaCheck (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of DOGAreaCheck
+
+
+
+function DOGCircMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGCircMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOGCircMax as text
+%        str2double(get(hObject,'String')) returns contents of DOGCircMax as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOGCircMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGCircMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function DOGCircMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGCircMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOGCircMin as text
+%        str2double(get(hObject,'String')) returns contents of DOGCircMin as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOGCircMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGCircMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in DOGCircCheck.
+function DOGCircCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGCircCheck (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of DOGCircCheck
+
+
+
+function DOGAngleMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGAngleMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOGAngleMax as text
+%        str2double(get(hObject,'String')) returns contents of DOGAngleMax as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOGAngleMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGAngleMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function DOGAngleMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGAngleMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOGAngleMin as text
+%        str2double(get(hObject,'String')) returns contents of DOGAngleMin as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOGAngleMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGAngleMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in DOGAngleCheck.
+function DOGAngleCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGAngleCheck (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of DOGAngleCheck
+
+
+
+function DOGYMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGYMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOGYMax as text
+%        str2double(get(hObject,'String')) returns contents of DOGYMax as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOGYMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGYMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function DOGYMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGYMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOGYMin as text
+%        str2double(get(hObject,'String')) returns contents of DOGYMin as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOGYMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGYMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in DOGYCheck.
+function DOGYCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGYCheck (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of DOGYCheck
+
+
+
+function DOGXMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGXMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOGXMax as text
+%        str2double(get(hObject,'String')) returns contents of DOGXMax as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOGXMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGXMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function DOGXMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGXMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOGXMin as text
+%        str2double(get(hObject,'String')) returns contents of DOGXMin as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOGXMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGXMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in DOGXCheck.
+function DOGXCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGXCheck (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of DOGXCheck
+
+
+
+function DOGDensMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGDensMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOGDensMax as text
+%        str2double(get(hObject,'String')) returns contents of DOGDensMax as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOGDensMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGDensMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function DOGDensMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGDensMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOGDensMin as text
+%        str2double(get(hObject,'String')) returns contents of DOGDensMin as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOGDensMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGDensMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in DOGDensCheck.
+function DOGDensCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGDensCheck (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of DOGDensCheck
+
+
+
+function DOGPerimMax_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGPerimMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOGPerimMax as text
+%        str2double(get(hObject,'String')) returns contents of DOGPerimMax as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOGPerimMax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGPerimMax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function DOGPerimMin_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGPerimMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of DOGPerimMin as text
+%        str2double(get(hObject,'String')) returns contents of DOGPerimMin as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function DOGPerimMin_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to DOGPerimMin (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in DOGPerimCheck.
+function DOGPerimCheck_Callback(hObject, eventdata, handles)
+% hObject    handle to DOGPerimCheck (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of DOGPerimCheck
