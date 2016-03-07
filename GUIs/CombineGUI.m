@@ -1,12 +1,15 @@
 function CombineGUI()
 
-f = figure('name','Cell Tracking','Visible','off');
+drawnow limitrate nocallbacks
 
-hTypeTabs = uitabgroup('Parent',f,'SelectionChangedFcn',{@changeTab});
+f = figure('name','Cell Tracking','Position',[10 10 650 550],...
+    'MenuBar','none','ToolBar','none','Visible','off');
+
+hTypeTabs = uitabgroup('Parent',f,'SelectionChangedFcn',{@changeTab},'Tag','TabGroup');
 hTypeTab(1) = uitab(hTypeTabs,'Title','Main','Tag','MainTab');
 hTypeTab(2) = uitab(hTypeTabs,'Title','Upload Images','Tag','UploadImagesTab');
 hTypeTab(3) = uitab(hTypeTabs,'Title','Correct Images','Tag','CorrectImagesTab');
-hTypeTab(4) = uitab(hTypeTabs,'Title','Start Analysis');
+hTypeTab(4) = uitab(hTypeTabs,'Title','Detect Objects','Tag','DetectObjectsTab');
 
 H = Main();
 while ~isempty(H.Children)
@@ -26,6 +29,11 @@ while ~isempty(H.Children)
 end
 close(H);
 
+H = DetectObjects();
+while ~isempty(H.Children)
+    H.Children(1).Parent = hTypeTab(4);
+end
+close(H);
 
 f.Visible = 'on';
 tmpUploadImagesSetts = struct('ImageType','RGB','UploadType','FileSelect',...
@@ -35,6 +43,7 @@ f.UserData = struct('UploadImagesSetts',tmpUploadImagesSetts,...
     'CorrectImagesSetts',tmpCorrectImagesSetts,...
     'DetectObjectsSetts',[]);
 
+drawnow
 end
 
 %
@@ -47,6 +56,22 @@ if isprop(h,'Name')
     end
 end
 root = getFig(get(h,'Parent'));
+end
+
+function children = getChildren(h)
+children = [];
+listNodes = h;
+
+while ~isempty(listNodes)
+    currNode = listNodes(1);
+    
+    if ~isempty(currNode.Children)
+        children = [children;currNode.Children];
+        listNodes = [listNodes;currNode.Children];
+    end
+    
+    listNodes(1) = [];
+end
 end
 
 
@@ -72,6 +97,16 @@ end
 
 
 function preUpdateUploadImages(hObject)
+handles = guihandles(getFig(hObject));
+f = getFig(hObject);
+handles.UploadImagesPanel.Visible = 'off';
+maxX = 450; maxY = 300;
+if f.Position(3)>maxX && f.Position(4)>maxY
+    handles.UploadImagesPanel.Position = [0 1-maxY/f.Position(4) maxX/f.Position(3) maxY/f.Position(4)];
+else
+    handles.UploadImagesPanel.Position = [0 0 1 1];
+end
+handles.UploadImagesPanel.Visible = 'on';
 end
 
 
@@ -124,7 +159,18 @@ f = getFig(hObject);
 f.UserData.UploadImagesSetts = tmpUploadImagesSetts;
 end
 
+
 function preUpdateCorrectImages(hObject)
+handles = guihandles(getFig(hObject));
+f = getFig(hObject);
+handles.CorrectImagesPanel.Visible = 'off';
+maxX = 300; maxY = 200;
+if f.Position(3)>maxX && f.Position(4)>maxY
+    handles.CorrectImagesPanel.Position = [0 1-maxY/f.Position(4) maxX/f.Position(3) maxY/f.Position(4)];
+else
+    handles.CorrectImagesPanel.Position = [0 0 1 1];
+end
+handles.CorrectImagesPanel.Visible = 'on';
 end
 
 
