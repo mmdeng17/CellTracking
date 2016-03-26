@@ -114,8 +114,9 @@ if strcmp(outSurvFmt,'.csv')
                 combineHelper(SurvivalData{i,9}),combineHelper(SurvivalData{i,10}));
         end
     catch
-        fclose(fID);
+        error('Error writing output survival file.')
     end
+    fclose(fID);
 elseif strcmp(outSurvFmt,'.xls') || strcmp(outSurvFmt,'.xlsx')
     xlswrite([outBase 'Survival'],outSurv);
 else
