@@ -3,7 +3,7 @@ Mets = {'Area','Circularity','Local Density','Nuc Mean','Nuc Std Dev',...
     'Orientation','Track1 Mean','Track1 Std Dev','Track2 Mean',...
     'Track2 Std Dev','X Position','Y Position'};
 
-baseNs  = 'xyComb_Final_';
+baseNs  = 'p13_';
 dataFmt = '.csv';
 survFmt = '.csv';
 
@@ -26,8 +26,9 @@ if strcmp(dataFmt,'.csv')
     formatSpec = '%f%f%s%f%f%s%s%s%s%s%[^\n\r]';
     fileID = fopen([baseNs 'Survival.csv'],'r');
     try
-        dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter,  'ReturnOnError', false);
+        dataArray = textscan(fileID,formatSpec,'Delimiter',delimiter,'ReturnOnError', false,'HeaderLines',1);
     catch
+        fclose(fileID);
         error('Error reading data file')
     end
     fclose(fileID);
@@ -59,7 +60,6 @@ for i=1:numel(Mets)
     end
 end
 
-size(outData{1})
 for i=1:numel(Survival)
     for j=1:size(outData{1},2)
         if outData{1}(i,j)~=0
@@ -78,7 +78,8 @@ for i=1:numel(Survival)
     if Survival(i).Parent==0
         survStart = 0;
     else
-        survStart = Survival(Survival(i).Parent).T+Survival(Survival(i).Parent).L;
+        parInd = find(cell2mat({Survival(:).Cell})==Survival(i).Parent);
+        survStart = Survival(parInd).T+Survival(parInd).L;
     end
     if dataStart<survStart
         fprintf('Cell %d data (t=%d) does not match start time of %d.\n',i,dataStart,survStart)
