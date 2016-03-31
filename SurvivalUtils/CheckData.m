@@ -3,11 +3,15 @@ Mets = {'Area','Circularity','Local Density','Nuc Mean','Nuc Std Dev',...
     'Orientation','Track1 Mean','Track1 Std Dev','Track2 Mean',...
     'Track2 Std Dev','X Position','Y Position'};
 
-baseNs  = 'p13_';
-dataFmt = '.csv';
-survFmt = '.csv';
+baseNs = input('Please enter the base name of the file: ','s');
+dataFmt = input('Please enter the format of the data files: ','s');
+survFmt = input('Please enter the format of the survival file: ','s');
+% baseNs  = 'p13_';
+% dataFmt = '.csv';
+% survFmt = '.csv';
 
 %% Load data
+fprintf('Loading data...\n');
 outData = cell(1,numel(Mets));
 if strcmp(dataFmt,'.csv')
     for j=1:numel(Mets)
@@ -19,8 +23,8 @@ else
     error('Unrecognized input data format.')
 end
 
-
 %% Load survival
+fprintf('Loading survival...\n')
 if strcmp(dataFmt,'.csv')
     delimiter = ',';
     formatSpec = '%f%f%s%f%f%s%s%s%s%s%[^\n\r]';
@@ -54,12 +58,14 @@ else
     error('Unrecognized input data format.')
 end
 
+fprintf('Beginning data check...\n')
 for i=1:numel(Mets)
     if size(outData{i},1)~=numel(Survival)
         error(sprintf('Data sheet %d does not match survival sheet.',i)) 
     end
 end
 
+errors = 0;
 for i=1:numel(Survival)
     for j=1:size(outData{1},2)
         if outData{1}(i,j)~=0
@@ -82,16 +88,25 @@ for i=1:numel(Survival)
         survStart = Survival(parInd).T+Survival(parInd).L;
     end
     if dataStart<survStart
-        fprintf('Cell %d data (t=%d) does not match start time of %d.\n',i,dataStart,survStart)
+        errors = errors+1;
+        fprintf('Cell %d (#%d) data (t=%d) does not match start time of %d.\n',i,Survival(i).Cell,dataStart,survStart)
     end
     
     switch Survival(i).F
         case {'M','A'}
             survEnd = Survival(i).T;
             if dataEnd>survEnd
-                fprintf('Cell %d data (t=%d) does not match fate time of %d.\n',i,dataEnd,survEnd)
+                errors = errors+1;
+                fprintf('Cell %d (#%d) data (t=%d) does not match fate time of %d.\n',i,Survival(i).Cell,dataEnd,survEnd)
             end
     end
+    
+end
+
+if errors==0
+    fprintf('Data check finished. No errors found.\n')
+else
+    fprintf('Data check finished.\n')
 end
 
 end
