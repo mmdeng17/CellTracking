@@ -3,11 +3,11 @@ Mets = {'Area','Circularity','Local Density','Nuc Mean','Nuc Std Dev',...
     'Orientation','Track1 Mean','Track1 Std Dev','Track2 Mean',...
     'Track2 Std Dev','X Position','Y Position'};
 
-baseNs  = {'xyComb_Final_'};
+baseNs  = {'p13_','p14_','p15_','p18_','p19_','p20_'};
 dataFmt = '.csv';
 survFmt = '.csv';
 
-outBase = 'test';
+outBase = 'p10s_';
 outDataFmt = '.csv';
 outSurvFmt = '.csv';
 
@@ -32,7 +32,7 @@ for i=1:numel(baseNs)
         delimiter = ',';
         formatSpec = '%s%s%s%s%s%s%s%s%s%s%[^\n\r]';
         fileID = fopen([baseNs{i} 'Survival.csv'],'r');
-        dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter,  'ReturnOnError', false);
+        dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter,'ReturnOnError', false,'HeaderLines',1);
         fclose(fileID);
         raw = repmat({''},length(dataArray{1}),length(dataArray)-1);
         for col=1:length(dataArray)-1

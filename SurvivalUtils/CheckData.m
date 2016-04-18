@@ -30,8 +30,9 @@ if strcmp(dataFmt,'.csv')
     formatSpec = '%f%f%s%f%f%s%s%s%s%s%[^\n\r]';
     fileID = fopen([baseNs 'Survival.csv'],'r');
     try
-        dataArray = textscan(fileID,formatSpec,'Delimiter',delimiter,'ReturnOnError', false,'HeaderLines',1);
+        dataArray = textscan(fileID,formatSpec,'Delimiter',delimiter,'ReturnOnError', false);
     catch
+        dataArray = textscan(fileID,formatSpec,'Delimiter',delimiter,'ReturnOnError', false,'HeaderLines',1);
         fclose(fileID);
         error('Error reading data file')
     end
@@ -61,6 +62,7 @@ end
 fprintf('Beginning data check...\n')
 for i=1:numel(Mets)
     if size(outData{i},1)~=numel(Survival)
+        [size(outData{i},1) numel(Survival)]
         error(sprintf('Data sheet %d does not match survival sheet.',i)) 
     end
 end
@@ -100,7 +102,21 @@ for i=1:numel(Survival)
                 fprintf('Cell %d (#%d) data (t=%d) does not match fate time of %d.\n',i,Survival(i).Cell,dataEnd,survEnd)
             end
     end
-    
+end
+
+for i=1:numel(Survival)
+    if strcmp(Survival(i).F,'M')
+        Ds = {Survival(i).D1,Survival(i).D2,Survival(i).D3,Survival(i).D4};
+        Ds = cellfun(@(x) str2double(x),Ds);
+        Ds = Ds(~isnan(Ds) & Ds~=0);
+        
+        for j=1:numel(Ds)
+            Ds(j)
+            if Survival(Ds(j)).Parent~=i
+                fprintf('Cell %d (#%d) is not parent of Cell %d (#%d).\n',i,Survival(i).Cell,Ds(j),Survival(Ds(j)).Cell)
+            end
+        end
+    end
 end
 
 if errors==0
