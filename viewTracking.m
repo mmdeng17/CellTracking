@@ -1113,23 +1113,23 @@ end
 data = cell(1,22);
 CCStats = regionprops(singleCC,'PixelIdxList','Area','Perimeter','Centroid','Orientation');
 tmp = Image(:,:,1);
-data{1} = 255*(mean(tmp(singleCC.PixelIdxList{1}))-backR);
-data{2} = 255*(median(tmp(singleCC.PixelIdxList{1}))-backR);
-data{3} = 255*(std(tmp(singleCC.PixelIdxList{1})));
-data{4} = 255*(min(tmp(singleCC.PixelIdxList{1}))-backR);
-data{5} = 255*(max(tmp(singleCC.PixelIdxList{1}))-backR);
+data{1} = (mean(tmp(singleCC.PixelIdxList{1}))-backR);
+data{2} = (median(tmp(singleCC.PixelIdxList{1}))-backR);
+data{3} = (std(tmp(singleCC.PixelIdxList{1})));
+data{4} = (min(tmp(singleCC.PixelIdxList{1}))-backR);
+data{5} = (max(tmp(singleCC.PixelIdxList{1}))-backR);
 tmp = Image(:,:,2);
-data{6} = 255*(mean(tmp(singleCC.PixelIdxList{1}))-backG);
-data{7} = 255*(median(tmp(singleCC.PixelIdxList{1}))-backG);
-data{8} = 255*(std(tmp(singleCC.PixelIdxList{1})));
-data{9} = 255*(min(tmp(singleCC.PixelIdxList{1}))-backG);
-data{10} = 255*(max(tmp(singleCC.PixelIdxList{1}))-backG);
+data{6} = (mean(tmp(singleCC.PixelIdxList{1}))-backG);
+data{7} = (median(tmp(singleCC.PixelIdxList{1}))-backG);
+data{8} = (std(tmp(singleCC.PixelIdxList{1})));
+data{9} = (min(tmp(singleCC.PixelIdxList{1}))-backG);
+data{10} = (max(tmp(singleCC.PixelIdxList{1}))-backG);
 tmp = Image(:,:,3);
-data{11} = 255*(mean(tmp(singleCC.PixelIdxList{1}))-backB);
-data{12} = 255*(median(tmp(singleCC.PixelIdxList{1}))-backB);
-data{13} = 255*(std(tmp(singleCC.PixelIdxList{1})));
-data{14} = 255*(min(tmp(singleCC.PixelIdxList{1}))-backB);
-data{15} = 255*(max(tmp(singleCC.PixelIdxList{1}))-backB);
+data{11} = (mean(tmp(singleCC.PixelIdxList{1}))-backB);
+data{12} = (median(tmp(singleCC.PixelIdxList{1}))-backB);
+data{13} = (std(tmp(singleCC.PixelIdxList{1})));
+data{14} = (min(tmp(singleCC.PixelIdxList{1}))-backB);
+data{15} = (max(tmp(singleCC.PixelIdxList{1}))-backB);
 data{16} = CCStats.Area;
 data{17} = CCStats.Perimeter;
 data{18} = 4*pi*CCStats.Area/CCStats.Perimeter/CCStats.Perimeter;
@@ -1148,7 +1148,7 @@ for i=1:nFrames
         continue
     else
         newData = getCellData(f.UserData.Props.NewBounds{i},...
-            round(255*app.Images{i}),...
+            app.Images{i},...
             'BkgdCorr',app.FcnSettings.BkgdCorr); % get measurements
         % update all cell data
         for k=1:numel(app.Data{1})
