@@ -3,11 +3,15 @@ Mets = {'Area','Circularity','Local Density','Nuc Mean','Nuc Std Dev',...
     'Orientation','Track1 Mean','Track1 Std Dev','Track2 Mean',...
     'Track2 Std Dev','X Position','Y Position'};
 
-baseNs  = 'xyComb_Final_';
-dataFmt = '.csv';
-survFmt = '.csv';
+baseNs = input('Please enter the base name of the file: ','s');
+dataFmt = input('Please enter the format of the data files: ','s');
+survFmt = input('Please enter the format of the survival file: ','s');
+% baseNs  = 'p13_';
+% dataFmt = '.csv';
+% survFmt = '.csv';
 
 %% Load data
+fprintf('Loading data...\n');
 outData = cell(1,numel(Mets));
 if strcmp(dataFmt,'.csv')
     for j=1:numel(Mets)
@@ -19,15 +23,17 @@ else
     error('Unrecognized input data format.')
 end
 
-
 %% Load survival
+fprintf('Loading survival...\n')
 if strcmp(dataFmt,'.csv')
     delimiter = ',';
     formatSpec = '%f%f%s%f%f%s%s%s%s%s%[^\n\r]';
     fileID = fopen([baseNs 'Survival.csv'],'r');
     try
-        dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter,  'ReturnOnError', false);
+        dataArray = textscan(fileID,formatSpec,'Delimiter',delimiter,'ReturnOnError', false);
     catch
+        dataArray = textscan(fileID,formatSpec,'Delimiter',delimiter,'ReturnOnError', false,'HeaderLines',1);
+        fclose(fileID);
         error('Error reading data file')
     end
     fclose(fileID);
@@ -53,13 +59,15 @@ else
     error('Unrecognized input data format.')
 end
 
+fprintf('Beginning data check...\n')
 for i=1:numel(Mets)
     if size(outData{i},1)~=numel(Survival)
+        [size(outData{i},1) numel(Survival)]
         error(sprintf('Data sheet %d does not match survival sheet.',i)) 
     end
 end
 
-size(outData{1})
+errors = 0;
 for i=1:numel(Survival)
     for j=1:size(outData{1},2)
         if outData{1}(i,j)~=0
@@ -78,19 +86,43 @@ for i=1:numel(Survival)
     if Survival(i).Parent==0
         survStart = 0;
     else
-        survStart = Survival(Survival(i).Parent).T+Survival(Survival(i).Parent).L;
+        parInd = find(cell2mat({Survival(:).Cell})==Survival(i).Parent);
+        survStart = Survival(parInd).T+Survival(parInd).L;
     end
     if dataStart<survStart
-        fprintf('Cell %d data (t=%d) does not match start time of %d.\n',i,dataStart,survStart)
+        errors = errors+1;
+        fprintf('Cell %d (#%d) data (t=%d) does not match start time of %d.\n',i,Survival(i).Cell,dataStart,survStart)
     end
     
     switch Survival(i).F
         case {'M','A'}
             survEnd = Survival(i).T;
             if dataEnd>survEnd
-                fprintf('Cell %d data (t=%d) does not match fate time of %d.\n',i,dataEnd,survEnd)
+                errors = errors+1;
+                fprintf('Cell %d (#%d) data (t=%d) does not match fate time of %d.\n',i,Survival(i).Cell,dataEnd,survEnd)
             end
     end
+end
+
+for i=1:numel(Survival)
+    if strcmp(Survival(i).F,'M')
+        Ds = {Survival(i).D1,Survival(i).D2,Survival(i).D3,Survival(i).D4};
+        Ds = cellfun(@(x) str2double(x),Ds);
+        Ds = Ds(~isnan(Ds) & Ds~=0);
+        
+        for j=1:numel(Ds)
+            Ds(j)
+            if Survival(Ds(j)).Parent~=i
+                fprintf('Cell %d (#%d) is not parent of Cell %d (#%d).\n',i,Survival(i).Cell,Ds(j),Survival(Ds(j)).Cell)
+            end
+        end
+    end
+end
+
+if errors==0
+    fprintf('Data check finished. No errors found.\n')
+else
+    fprintf('Data check finished.\n')
 end
 
 end
