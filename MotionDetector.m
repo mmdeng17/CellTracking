@@ -1,6 +1,11 @@
 classdef MotionDetector < handle
-    % Class to handle motion detection of objects. Allows updating of
-    % original track information to re-link tracks from new data.
+% MotionDetector Wrapper class for motion detecting algorithm for
+% CellTracker
+%   Class to handle motion detection of objects. Allows updating of
+%   original track information to re-link tracks from new data.
+%
+% Written by: Michael M. Deng
+% Last updated: 4/22/2016
     
     properties
         InData

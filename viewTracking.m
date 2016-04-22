@@ -1,4 +1,8 @@
 function viewTracking(app)
+% viewTracking GUI for viewing CellTracker output
+%
+% Written by: Michael M. Deng
+% Last updated: 4/22/2016
 
 % Define constants
 global COLORS metrics time last;

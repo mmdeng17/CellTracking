@@ -1,25 +1,27 @@
 function [assign,unassign,costs] = getMinAssign(initData,finData,dataDiffs,varargin)
-% Tracking algorithm to assign initial states to final states based on a 
-% cost matrix and a modified Hungarian assignment algorithm. initData and
-% finData refer to vectors of data for initial and final states of the
-% objects, while dataDiffs refers to the average difference in states for
-% each parameter of the object state.
+% getMinAssign Assign initial states to final states based on minimization
+% of sum of finite differences motion detection algorithm.
+%   Tracking algorithm to assign initial states to final states based on a 
+%   cost matrix and a modified Hungarian assignment algorithm. initData and
+%   finData refer to vectors of data for initial and final states of the
+%   objects, while dataDiffs refers to the average difference in states for
+%   each parameter of the object state.
 %
-% [A,U,C] = makeAssignment[i,f,d] returns the assignment of tracked
-% cell boundary objects as an assignment vector A, where the A(i) final
-% object is linked to the ith inital object. U consists of a vector of
-% cells that were unassigned in the algorithm, and C is a vector in the
-% same format as A with assignment costs instead of indices as vector
-% elements
+%   [A,U,C] = makeAssignment[i,f,d] returns the assignment of tracked cell
+%   boundary objects as an assignment vector A, where the A(i) final object
+%   is linked to the ith inital object. U consists of a vector of cells
+%   that were unassigned in the algorithm, and C is a vector in the same
+%   format as A with assignment costs instead of indices as vector
+%   elements.
 %
-% 'MetCost' - maximum cost allowed for assignment of one object to another
-%       for a single metric. The maximum cost allowed for assignment is
-%       MetCost*m, where m is the number of state parameters to be used for
-%       tracking.
-% 'BgDiffs' - background shift correction for videos that have large
-%       uniform shifts. Shifts must be calculated manually and
-%       consist of a 1x2 matrix indicating x and y shift in pixels
-% 'Greedy' - logical representing whether a greedy assignment algorithm
+%   'MetCost' - maximum cost allowed for assignment of one object to
+%       another for a single metric. The maximum cost allowed for
+%       assignment is MetCost*m, where m is the number of state parameters
+%       to be used for tracking.
+%   'BgDiffs' - background shift correction for videos that have large
+%       uniform shifts. Shifts must be calculated manually and consist of a
+%       1x2 matrix indicating x and y shift in pixels
+%   'Greedy' - logical representing whether a greedy assignment algorithm
 %       should be combined with Hungarian assignment algorithm when
 %       creating assignments
 %

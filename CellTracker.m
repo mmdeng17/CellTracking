@@ -1,4 +1,10 @@
 classdef CellTracker < handle
+% CellTracker Wrapper class for cell tracker program.
+% 	The CellTracker class holds data for cell tracking analysis, including
+% 	program settings, images, and output data.
+%
+% Written by: Michael M. Deng
+% Last updated: 4/22/2016
     
     properties
         FileNames
@@ -25,7 +31,7 @@ classdef CellTracker < handle
     methods
         
         function obj = CellTracker
-            % Constructor.
+            % Constructor
             obj.Properties = struct('Status','Empty','Meta',datetime);
         end
         

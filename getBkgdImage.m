@@ -1,18 +1,22 @@
 function [corrNucIm,corrTrackIms] = getBkgdImage(nucImage,trackImages,method,filtSize)
-% Get background level for input image using either a Gaussian blurring
-% method or a SKIZ method. nucImage is image containing foreground objects,
-% while trackImages is a 2x1 cell array containing the images for the other
-% 2 image channels. method is a string with either 'Gauss' or 'SKIZ'
-% indicating the method to be used. filtSize refers to the size of the
-% Gaussian filter to be used, which can be estimated as twice the area of
-% the largest object in the image.
+% getBkgdImage Calculate local background intensity of image.
+%   Get background level for input image using either a Gaussian blurring
+%   method or a SKIZ method. nucImage is image containing foreground
+%   objects, while trackImages is a 2x1 cell array containing the images
+%   for the other 2 image channels. method is a string with either 'Gauss'
+%   or 'SKIZ' indicating the method to be used. filtSize refers to the size
+%   of the kernel for the Gaussian smoothing filter, which can be estimated
+%   as twice the area of the largest object in the image.
 %
-% [CNI,CTI] = getBkgdImage(n,t,m,f) returns the object channel image with 
-% background intensity subtracted, as well as other image channels in a
-% cell array in CTI.
+%   [CNI,CTI] = getBkgdImage(n,t,m,f) returns the object channel image with 
+%   background intensity subtracted, as well as other image channels in a
+%   cell array in CTI. n is a grayscale image and t is a cell array of 2
+%   grayscale images. method is a string of the method to be used. filtSize
+%   is a integer describing the kernel size for the Gaussian blurring
+%   filter.
 %
 % Written by: Michael M. Deng
-% Last updated: 1/25/15
+% Last updated: 4/22/16
 
 switch method
     case 'Gauss'

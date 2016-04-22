@@ -1,6 +1,10 @@
 classdef ImCache
-    %UNTITLED2 Summary of this class goes here
-    %   Detailed explanation goes here
+% ImCache Wrapper class for caching microscopy images for faster viewing.
+% 	The ImCache class attempts to cache recent and nearby images for faster
+% 	loading on the CellTracking GUI.
+%
+% Written by: Michael M. Deng
+% Last updated: 4/22/2016
     
     properties
         NBlocks

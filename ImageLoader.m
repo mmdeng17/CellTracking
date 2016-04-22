@@ -1,5 +1,10 @@
 classdef ImageLoader < handle
-    
+% ImageLoader Wrapper class for lading microscopy images
+%   The ImageLoader class holds data for loading microscopy images for
+%   CellTracker analysis.
+%
+% Written by: Michael M. Deng
+% Last updated: 4/22/2016
     properties
         Method
         NFrames

@@ -1,8 +1,9 @@
 function [Bounds,CCs,pObj] = findCells(Image,method,varargin)
-% Finds object boundaries from input image using either edge detection of
-% thresholding algorithms, where Image is a two-dimensional grayscale
-% image, method isa string 'EdgeWater' or 'ThreshWater' referring to
-% detection algorithm used.
+% findCells Find foreground objects in image.
+%   Finds object boundaries from input image using either edge detection of
+%   thresholding algorithms, where Image is a two-dimensional grayscale
+%   image, method is a string 'EdgeWater' or 'ThreshWater' referring to
+%   detection algorithm used.
 %
 %   [B,C,p] = findCells(i,m) returns the detected objects as a cell array
 %   of boundaries B, or a structure of connected components CC, as well as
@@ -20,7 +21,7 @@ function [Bounds,CCs,pObj] = findCells(Image,method,varargin)
 %       default
 %
 % Written by: Michael M. Deng
-% Last updated: 1/25/15
+% Last updated: 4/22/2016
 
 %% ----------INPUT PARSE----------
 p = inputParser;
@@ -96,7 +97,6 @@ if strcmp(method,'EdgeWater')
         locMask = bwmorph(tmpMask1(maskY(1):maskY(2),maskX(1):maskX(2)),'bridge');
         tmpMask1(maskY(1):maskY(2),maskX(1):maskX(2)) = locMask;
         
-%         tmpMask1 = bwmorph(tmpMask1,'bridge');
         boundStat = regionprops(tmpMask1,'FilledImage','BoundingBox');
         initX = boundStat(1).BoundingBox(1)+.5;
         initY = boundStat(1).BoundingBox(2)+.5;
@@ -104,13 +104,8 @@ if strcmp(method,'EdgeWater')
         tmpMask2 = imopen(logical(tmpMask2),strel('disk',1));            
         if sum(sum(tmpMask2))>minSize/2&&sum(sum(tmpMask2))<maxSize*2
             objMask = objMask|tmpMask2;
-%             tmp = bwboundaries(tmpMask2);
-%             edgeBounds{end+1} = tmp{1};
-%             edgeCCs.NumObjects = edgeCCs.NumObjects+1;
-%             edgeCCs.PixelIdxList{end+1} = find(tmpMask2==1);
         end
     end
-%     figure,imshow(Image,[])
 
     [edgeBounds,objLabel,nObjs,~] = bwboundaries(objMask);
     edgeCCs.NumObjects = nObjs;

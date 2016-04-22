@@ -1,9 +1,10 @@
 function [cellData] = getCellData(CCs,Image,varargin)
-% Calculate metrics for objects in an image. CCs is a structure of
-% connected components in image Image.
+% getCellData Calculate metrics for objects in an image.
+%   Calculate metrics for objects in an image. CCs is a structure of
+%   connected components in image Image.
 % 
-% C = getCellData(c,i) returns a cell array with size equal to the number
-% of objects, with each cell containing a vector of object measurements.
+%   C = getCellData(c,i) returns a cell array with size equal to the number
+%   of objects, with each cell containing a vector of object measurements.
 %
 %   'ImAssign' - which image channel to use as object channel
 %   'BkgdCorr' - method for background correction using getCellBkgd
@@ -12,7 +13,7 @@ function [cellData] = getCellData(CCs,Image,varargin)
 %       background correction
 %
 % Written by: Michael M. Deng
-% Last updated: 1/25/15
+% Last updated: 4/22/16
 
 %% ----------INPUT PARSE----------
 p = inputParser;

@@ -19,7 +19,8 @@ function [assignment,costs] = munkres(costMat)
 % Adopted from version 2.3 of the original munkres program by Yi Cao at 
 % Cranfield University on 11th September 2011
 %
-% Last updated: 8 November 2013
+% Modified by: Michael M. Deng
+% Last updated: 4/22/2016
 
 assignment = zeros(1,size(costMat,1));
 costs      = zeros(1,size(costMat,1));
@@ -28,8 +29,6 @@ validMat = costMat == costMat & costMat < Inf;
 bigM = 10^(ceil(log10(sum(costMat(validMat))))+1);
 costMat(~validMat) = bigM;
 
-% costMat(costMat~=costMat)=Inf;
-% validMat = costMat<Inf;
 validCol = any(validMat,1);
 validRow = any(validMat,2);
 

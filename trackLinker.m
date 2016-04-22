@@ -1,12 +1,14 @@
 function [tracks,arrayTracks] = trackLinker(data,varargin)
-% Links objects from frame to frame together using a cost matrix and
-% Munkres Hungarian assignment algorithm. data is a cell array of data with
-% a cell for each frame containing a cell array of data for objects in that
-% frame.
+% trackLinker Calculates trajectories of object data using motion detection
+% algorithm.
+%   Links objects from frame to frame together using a cost matrix and
+%   Munkres Hungarian assignment algorithm. data is a cell array of data
+%   with a cell for each frame containing a cell array of data for objects
+%   in that frame.
 %
-% [T,A] = trackLinker(d) returns cell array of indices for each found
-% trajectory, where the ith value refers to the object index in frame i, as
-% well as the indices in array form in A.
+%   [T,A] = trackLinker(d) returns cell array of indices for each found
+%   trajectory, where the ith value refers to the object index in frame i,
+%   as well as the indices in array form in A.
 %
 %   'Method' - in development for SVM tracking (NOT CURRENTLY FUNCTIONAL)
 %   'MetCost' - maximum cost for a single parameter of the object data. The
@@ -19,8 +21,8 @@ function [tracks,arrayTracks] = trackLinker(data,varargin)
 %       parameter
 %   'Angle' - whether or not the angle metric is used to track objects
 % 
-% Written by: Michael Deng
-% Last modified: 1/25/15
+% Written by: Michael M. Deng
+% Last updated: 4/22/2016
 
 %% Parse Arguments
 p = inputParser;

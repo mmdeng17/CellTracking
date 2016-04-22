@@ -1,17 +1,18 @@
 function [threshIm,imThresh] = getCellThresh(Image,method,varargin)
-% Calculates threshold for object detection for given image, using either a
-% local adaptive or a global method. Image is a two-dimensional grayscale
-% input image, while method is a string of either 'Single' or 'Adapt',
-% indicating which mthod to use.
+% getCellThresh Calculates threshold for object detection in image.
+%   Calculates threshold for object detection for given image, using either a
+%   local adaptive or a global method. Image is a two-dimensional grayscale
+%   input image, while method is a string of either 'Single' or 'Adapt',
+%   indicating which mthod to use.
 % 
-% [T,I] = getCellThresh(i,m) returns a binary image representing the
-% thresholded pixels in T and the threshold value in I
+%   [T,I] = getCellThresh(i,m) returns a binary image representing the
+%   thresholded pixels in T and the threshold value in I
 % 
 %   'Div' - number of divisions to use for each dimension of image to
 %       calculate local threshold in each division.
 %
 % Written by: Michael Deng
-% Last edited: 1/25/15
+% Last edited: 4/22/16
 
 %% ----------INPUT PARSE----------
 p = inputParser;

@@ -1,8 +1,9 @@
 function yhat = interpTrack(t,y,varargin)
-% Interpolates incomplete track data. t is a vector of timepoints, while y
-% is the track measurements with missing values equal to 0.
+% interpTrack Interpolates incomplete trajectory data.
+%   Interpolates incomplete track data. t is a vector of timepoints, while
+%   y is the track measurements with missing values equal to 0.
 %
-% Y = interpTrack(t,y) returns the interpolated track data in vector Y.
+%   Y = interpTrack(t,y) returns the interpolated track data in vector Y.
 %
 %   'NumStart' - maximum number of missing initial points that can be 
 %       extrapolated from data
@@ -11,8 +12,8 @@ function yhat = interpTrack(t,y,varargin)
 %   'NumHole' - maximum number of contiguous points in middle of data set
 %       that can be interpolated.
 %
-% Written by: Michael Deng
-% Last modified: 1/25/15
+% Written by: Michael M. Deng
+% Last updated: 4/22/2016
 
 %% Parse Arguments
 p = inputParser;

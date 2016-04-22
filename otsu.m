@@ -18,8 +18,8 @@ function [IDX,thresh,sep] = otsu(I,n)
 %
 %   -- Damien Garcia -- 2007/08, revised 2010/03
 %
-%   Modified by Michael Deng
-%   Last updated: 9/19/2014
+% Modified by: Michael M. Deng
+% Last updated: 4/22/2016
 
 
 narginchk(1,2)

@@ -1,4 +1,8 @@
 function GUIRNT(Parent)
+% GUIRNT Sub-GUI for Run New Tracking
+%
+% Written by: Michael M. Deng
+% Last updated: 4/22/2016
 
 % Constants
 FULL_FILL = [.02 .02 .96 .96];
